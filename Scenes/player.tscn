@@ -8,7 +8,6 @@
 [ext_resource type="AudioStream" uid="uid://4dganygatfac" path="res://Assets/Sounds/walk-1.wav" id="6_tcpwd"]
 [ext_resource type="AudioStream" uid="uid://bf1whj28mj15c" path="res://Assets/Sounds/walk-2.wav" id="7_bvk8k"]
 [ext_resource type="AudioStream" uid="uid://ckegcskeiu1x" path="res://Assets/Sounds/walk-3.wav" id="8_rgcb8"]
-[ext_resource type="Script" path="res://Scenes/AudioStreamPlayer.gd" id="9_asajl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ecb3i"]
 size = Vector2(7.5, 7.5)
@@ -88,4 +87,3 @@ libraries = {
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_gxnc4")
-script = ExtResource("9_asajl")

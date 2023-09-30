@@ -35,12 +35,12 @@ func _input(event):
 		$Sprite2D.frame = 3
 	
 	var coll = move_and_collide(velocity)
-	if coll:
+#	 if coll:
 		# Collision happens
-		$AudioStreamPlayer.play_audio("collide")
-	elif velocity.length() > 0:
+#		$AudioStreamPlayer.play("collide")
+#	elif velocity.length() > 0:
 		# Normal movement
-		$AudioStreamPlayer.play_audio("walk")
+#		$AudioStreamPlayer.play("walk")
 	
 	position.x = round(position.x)
 	position.y = round(position.y)
