@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://ql7bqubma2ro"]
+[gd_scene load_steps=7 format=3 uid="uid://ql7bqubma2ro"]
 
 [ext_resource type="Script" path="res://Scenes/player.gd" id="1_hj2e4"]
 [ext_resource type="Texture2D" uid="uid://6axvgwvyrnag" path="res://Assets/Player.png" id="1_ocxy1"]
+[ext_resource type="Texture2D" uid="uid://72duop3qiohv" path="res://Assets/selected.png" id="3_o0qkl"]
+[ext_resource type="Script" path="res://Scenes/Select.gd" id="4_5qmpr"]
+[ext_resource type="Texture2D" uid="uid://seumn6ug0v3j" path="res://Assets/whitemask.png" id="4_tg6uj"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8febm"]
-size = Vector2(8, 8)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ecb3i"]
+size = Vector2(7.5, 7.5)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 floor_max_angle = 0.0
@@ -15,4 +18,14 @@ script = ExtResource("1_hj2e4")
 texture = ExtResource("1_ocxy1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_8febm")
+shape = SubResource("RectangleShape2D_ecb3i")
+
+[node name="Selected" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
+texture = ExtResource("3_o0qkl")
+script = ExtResource("4_5qmpr")
+
+[node name="whitecover" type="Sprite2D" parent="Selected"]
+visible = false
+modulate = Color(1, 1, 1, 0.501961)
+texture = ExtResource("4_tg6uj")

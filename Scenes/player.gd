@@ -1,20 +1,36 @@
 extends CharacterBody2D
 
-var motion = Vector2(0,0)
 
 func _ready():
-	pass
+	var selection = $Selected
 	
 func _input(event):
-	motion = Vector2.ZERO
 	
-	if event.is_action_pressed("right"):
-		motion.x = 8
-	elif event.is_action_pressed("left"):
-		motion.x = -8
-	elif event.is_action_pressed("up"):
-		motion.y = -8
-	elif event.is_action_pressed("down"):
-		motion.y = 8
+	velocity = Vector2.ZERO
 	
-	move_and_collide(motion)
+	if event.is_action_pressed("move_right"):
+		velocity.x = 8
+	elif event.is_action_pressed("move_left"):
+		velocity.x = -8
+	elif event.is_action_pressed("move_up"):
+		velocity.y = -8
+	elif event.is_action_pressed("move_down"):
+		velocity.y = 8
+		
+	if event.is_action_pressed("arrow_right"):
+		$Selected.position = Vector2(8,0)
+
+	elif event.is_action_pressed("arrow_left"):
+		$Selected.position = Vector2(-8,0)
+
+	elif event.is_action_pressed("arrow_up"):
+		$Selected.position = Vector2(0,-8)
+
+	elif event.is_action_pressed("arrow_down"):
+		$Selected.position = Vector2(0,8)
+
+	
+	move_and_collide(velocity)
+	
+	position.x = round(position.x)
+	position.y = round(position.y)
