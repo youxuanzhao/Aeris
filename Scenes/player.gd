@@ -37,11 +37,10 @@ func _input(event):
 	var coll = move_and_collide(velocity)
 	if coll:
 		# Collision happens
-		pass
+		$AudioStreamPlayer.play_audio("collide")
 	elif velocity.length() > 0:
 		# Normal movement
-		$AudioStreamPlayer.stream
-		$AudioStreamPlayer.play()
+		$AudioStreamPlayer.play_audio("walk")
 	
 	position.x = round(position.x)
 	position.y = round(position.y)
