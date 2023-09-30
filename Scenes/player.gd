@@ -28,9 +28,15 @@ func _input(event):
 
 	elif event.is_action_pressed("arrow_down"):
 		$Selected.position = Vector2(0,8)
-
 	
-	move_and_collide(velocity)
+	var coll = move_and_collide(velocity)
+	if coll:
+		# Collision happens
+		pass
+	elif velocity.length() > 0:
+		# Normal movement
+		$AudioStreamPlayer.stream
+		$AudioStreamPlayer.play()
 	
 	position.x = round(position.x)
 	position.y = round(position.y)
