@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c3n27ffky0xfd" path="res://Assets/blackmask.png" id="2_x5xds"]
 [ext_resource type="Script" path="res://Scenes/WindowControl.gd" id="4_8a7ad"]
 [ext_resource type="Script" path="res://Scenes/player.gd" id="4_kuehn"]
-[ext_resource type="Texture2D" path="res://Assets/Player-Sheet.png" id="5_5ryax"]
+[ext_resource type="Texture2D" uid="uid://dat0mim2ytuj4" path="res://Assets/Player-Sheet.png" id="5_5ryax"]
 [ext_resource type="Texture2D" uid="uid://72duop3qiohv" path="res://Assets/selected.png" id="6_tarol"]
 [ext_resource type="Script" path="res://Scenes/Select.gd" id="7_t30mm"]
 [ext_resource type="Texture2D" uid="uid://seumn6ug0v3j" path="res://Assets/whitemask.png" id="8_t7b41"]
