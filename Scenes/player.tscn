@@ -1,14 +1,14 @@
 [gd_scene load_steps=15 format=3 uid="uid://ql7bqubma2ro"]
 
 [ext_resource type="Script" path="res://Scenes/player.gd" id="1_hj2e4"]
-[ext_resource type="Texture2D" uid="uid://dat0mim2ytuj4" path="res://Assets/Player-Sheet.png" id="2_grxfk"]
+[ext_resource type="Texture2D" path="res://Assets/Player-Sheet.png" id="2_grxfk"]
 [ext_resource type="Texture2D" uid="uid://72duop3qiohv" path="res://Assets/selected.png" id="3_o0qkl"]
 [ext_resource type="Script" path="res://Scenes/Select.gd" id="4_5qmpr"]
 [ext_resource type="Texture2D" uid="uid://seumn6ug0v3j" path="res://Assets/whitemask.png" id="4_tg6uj"]
 [ext_resource type="AudioStream" uid="uid://4dganygatfac" path="res://Assets/Sounds/walk-1.wav" id="6_tcpwd"]
 [ext_resource type="AudioStream" uid="uid://bf1whj28mj15c" path="res://Assets/Sounds/walk-2.wav" id="7_bvk8k"]
 [ext_resource type="AudioStream" uid="uid://ckegcskeiu1x" path="res://Assets/Sounds/walk-3.wav" id="8_rgcb8"]
-[ext_resource type="Script" path="res://Scenes/SoundEffects.gd" id="9_xfq4m"]
+[ext_resource type="Script" path="res://Scenes/SoundEffects.gd" id="9_f2yjj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ecb3i"]
 size = Vector2(7.5, 7.5)
@@ -88,4 +88,4 @@ libraries = {
 
 [node name="SoundEffects" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_gxnc4")
-script = ExtResource("9_xfq4m")
+script = ExtResource("9_f2yjj")
