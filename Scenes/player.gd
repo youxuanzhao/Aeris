@@ -1,8 +1,9 @@
 extends CharacterBody2D
 
+var sfx: SoundEffects
 
 func _ready():
-	pass
+	sfx = $SoundEffects as SoundEffects
 	
 func _input(event):
 	
@@ -35,12 +36,12 @@ func _input(event):
 		$Sprite2D.frame = 3
 	
 	var coll = move_and_collide(velocity)
-#	 if coll:
+	if coll:
 		# Collision happens
-#		$AudioStreamPlayer.play("collide")
-#	elif velocity.length() > 0:
+		sfx.play_audio("collide")
+	elif velocity.length() > 0:
 		# Normal movement
-#		$AudioStreamPlayer.play("walk")
+		sfx.play_audio("walk")
 	
 	position.x = round(position.x)
 	position.y = round(position.y)
