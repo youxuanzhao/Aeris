@@ -23,7 +23,10 @@ class MapBlockBehaviour:
 	var Burnable : bool = false
 	
 	func CheckAir():
-		Air = TileManager.main.get_cell_tile_data(TileManager.AirMaskID,Vector2i(Coordinate.y,Coordinate.z)) == null
+		Air = TileManager.main.get_cell_tile_data(TileManager.AirMaskID,GetPlaneCoordinate()) == null
+	
+	func GetPlaneCoordinate() -> Vector2i:
+		return Vector2i(Coordinate.x,Coordinate.y)
 	
 	func _init(coordinate : Vector3i,textureCoordinate : Vector3i):
 		Coordinate = coordinate
@@ -72,12 +75,14 @@ class MapBlockBehaviour:
 
 	func ConstantBehaviour():
 		return
+		#if TileManager.main.GetBlock(Coordinate + Vector3i.DOWN) == null:
+			#TileManager.main.SetBlock(Coordinate + Vector3i.DOWN,self)
 
 class BrickBlock extends TileManager.MapBlockBehaviour:
 	func define():
 		Burnable = true
-	func WithoutAirBehaviour():
-		# TileManager.main.SetAir(Vector2i(Coordinate.y,Coordinate.z),false)
+	func OnAirOccupyingBehaviour():
+		#TileManager.main.SetAir(Vector2i(Coordinate.y,Coordinate.z),false)
 		return
 		
 func _ready():
@@ -96,15 +101,22 @@ func _process(delta):
 func LoadMapTile():
 	for layer in BlockLayerArray:
 		for coordinate in get_used_cells(layer):
-			var layercord = Vector3i(layer,coordinate.x,coordinate.y)
+			var layercord = Vector3i(coordinate.x,coordinate.y,layer)
 			var textureCoodinate = get_cell_atlas_coords(layer,coordinate) 
 			TileDictionary[layercord] = BrickBlock.new(layercord,Vector3i(get_cell_source_id(layer,coordinate),textureCoodinate.x,textureCoodinate.y))
 			
 func SetBlock(cord : Vector3i,block : MapBlockBehaviour):
 	TileDictionary[cord] = block
+	TileDictionary.erase(block.Coordinate)
+	block.Coordinate = cord
 	
 func GetBlock(cord : Vector3i) -> MapBlockBehaviour:
-	return TileDictionary[cord]
+	if TileDictionary.has(cord):
+		return TileDictionary[cord]
+	return null
+	
+func HasAir(cord : Vector2i) -> bool:
+	return TileManager.main.get_cell_tile_data(AirMaskID,cord) == null
 	
 func SetAir(cord : Vector2i,air : bool):
 	if air:
@@ -116,5 +128,5 @@ func RendererBlock():
 	for layer in BlockLayerArray:
 		clear_layer(layer)
 	for block in TileDictionary.values():
-		set_cell(block.Coordinate.x,Vector2i(block.Coordinate.y,block.Coordinate.z),block.TextureCoordinate.x,Vector2i(block.TextureCoordinate.y,block.TextureCoordinate.z))
+		set_cell(block.Coordinate.z,block.GetPlaneCoordinate(),block.TextureCoordinate.x,Vector2i(block.TextureCoordinate.y,block.TextureCoordinate.z))
 	return
