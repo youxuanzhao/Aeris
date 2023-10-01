@@ -2,13 +2,13 @@ extends TileMap
 class_name TileManager
 
 static var AirMaskID : int = 2
-static var TileSheetID : int
+var BlockLayerArray = [0]
+
 static var BlackMask : Vector3i = Vector3i(2,0,0)
 static var main : TileManager
 
 static var TileTypeDictionary = {}
 var TileDictionary : Dictionary = Dictionary()
-var BlockLayerArray = [0]
 
 var timer : float
 @export var TickInterval : float = 1
@@ -77,6 +77,7 @@ class BrickBlock extends TileManager.MapBlockBehaviour:
 	func define():
 		Burnable = true
 	func WithoutAirBehaviour():
+		# TileManager.main.SetAir(Vector2i(Coordinate.y,Coordinate.z),false)
 		return
 		
 func _ready():
@@ -90,6 +91,7 @@ func _process(delta):
 		for value in TileDictionary.values():
 			value.BlockTick()
 		RendererBlock()
+		print_debug("Tick")
 	
 func LoadMapTile():
 	for layer in BlockLayerArray:
@@ -106,10 +108,10 @@ func GetBlock(cord : Vector3i) -> MapBlockBehaviour:
 	
 func SetAir(cord : Vector2i,air : bool):
 	if air:
-		set_cell(AirMaskID,cord,BlackMask.x,Vector2i(BlackMask.y,BlackMask.z))
-	else:
 		set_cell(AirMaskID,cord)
-	
+	else:
+		set_cell(AirMaskID,cord,BlackMask.x,Vector2i(BlackMask.y,BlackMask.z))
+		
 func RendererBlock():
 	for layer in BlockLayerArray:
 		clear_layer(layer)
