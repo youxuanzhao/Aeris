@@ -1,10 +1,18 @@
-[gd_scene load_steps=9 format=3 uid="uid://byayvdf7igbsm"]
+[gd_scene load_steps=23 format=3 uid="uid://byayvdf7igbsm"]
 
-[ext_resource type="PackedScene" uid="uid://ql7bqubma2ro" path="res://Scenes/player.tscn" id="1_fsdmj"]
 [ext_resource type="Texture2D" uid="uid://7al4f48lrkx1" path="res://Assets/tile-Sheet.png" id="1_lggcy"]
 [ext_resource type="Texture2D" uid="uid://c3n27ffky0xfd" path="res://Assets/blackmask.png" id="2_x5xds"]
 [ext_resource type="Script" path="res://Scenes/WindowControl.gd" id="4_8a7ad"]
-[ext_resource type="Script" path="res://Scenes/TileManager.gd" id="4_d63bs"]
+[ext_resource type="Script" path="res://Scenes/TileManager.gd" id="4_ixvl2"]
+[ext_resource type="Script" path="res://Scenes/player.gd" id="4_kuehn"]
+[ext_resource type="Texture2D" uid="uid://dat0mim2ytuj4" path="res://Assets/Player-Sheet.png" id="5_5ryax"]
+[ext_resource type="Texture2D" uid="uid://72duop3qiohv" path="res://Assets/selected.png" id="6_tarol"]
+[ext_resource type="Script" path="res://Scenes/Select.gd" id="7_t30mm"]
+[ext_resource type="Texture2D" uid="uid://seumn6ug0v3j" path="res://Assets/whitemask.png" id="8_t7b41"]
+[ext_resource type="AudioStream" uid="uid://4dganygatfac" path="res://Assets/Sounds/walk-1.wav" id="9_j40o6"]
+[ext_resource type="AudioStream" uid="uid://bf1whj28mj15c" path="res://Assets/Sounds/walk-2.wav" id="10_2ye5o"]
+[ext_resource type="AudioStream" uid="uid://ckegcskeiu1x" path="res://Assets/Sounds/walk-3.wav" id="11_mt2f0"]
+[ext_resource type="Script" path="res://Scenes/SoundEffects.gd" id="12_23psc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_81rkx"]
 texture = ExtResource("1_lggcy")
@@ -72,6 +80,71 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_81rkx")
 sources/2 = SubResource("TileSetAtlasSource_b06lu")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o0jmc"]
+size = Vector2(7.5, 7.5)
+
+[sub_resource type="Animation" id="Animation_npmgq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_d4knu"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.392157), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_qfqfa"]
+resource_name = "warning"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qyuly"]
+_data = {
+"RESET": SubResource("Animation_npmgq"),
+"idle": SubResource("Animation_d4knu"),
+"warning": SubResource("Animation_qfqfa")
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_q3sk1"]
+streams_count = 3
+stream_0/stream = ExtResource("9_j40o6")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("10_2ye5o")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("11_mt2f0")
+stream_2/weight = 1.0
+
 [node name="Node2D" type="Node2D"]
 
 [node name="WindowControl" type="Node" parent="."]
@@ -94,9 +167,41 @@ layer_2/enabled = true
 layer_2/modulate = Color(1, 1, 1, 0.501961)
 layer_2/y_sort_enabled = false
 layer_2/y_sort_origin = 0
-layer_2/z_index = 0
+layer_2/z_index = 1
 layer_2/tile_data = PackedInt32Array(589824, 2, 0, 524288, 2, 0, 458752, 2, 0, 393216, 2, 0, 327680, 2, 0, 262144, 2, 0, 196608, 2, 0, 131072, 2, 0, 65536, 2, 0, 0, 2, 0, 3, 2, 0, 65539, 2, 0, 65538, 2, 0, 524290, 2, 0, 524291, 2, 0, 524292, 2, 0, 524293, 2, 0, 524294, 2, 0, 524295, 2, 0, 524296, 2, 0, 524297, 2, 0, 589833, 2, 0, 589832, 2, 0, 589831, 2, 0, 589830, 2, 0, 589829, 2, 0, 589828, 2, 0, 589827, 2, 0, 458761, 2, 0, 393225, 2, 0, 327689, 2, 0, 262153, 2, 0, 196617, 2, 0, 131081, 2, 0, 65545, 2, 0, 9, 2, 0, 8, 2, 0, 7, 2, 0, 6, 2, 0, 5, 2, 0, 4, 2, 0, 2, 2, 0, 1, 2, 0, 65540, 2, 0, 65542, 2, 0, 65543, 2, 0, 65544, 2, 0, 131080, 2, 0, 131079, 2, 0, 131078, 2, 0, 131076, 2, 0, 131075, 2, 0, 131074, 2, 0, 131073, 2, 0, 65537, 2, 0, 196609, 2, 0, 262145, 2, 0, 327681, 2, 0, 327682, 2, 0, 262146, 2, 0, 196610, 2, 0, 196611, 2, 0, 262147, 2, 0, 327683, 2, 0, 458755, 2, 0, 458756, 2, 0, 327684, 2, 0, 262148, 2, 0, 458757, 2, 0, 458758, 2, 0, 458759, 2, 0, 393223, 2, 0, 327687, 2, 0, 262151, 2, 0, 196615, 2, 0, 196614, 2, 0, 262150, 2, 0, 327686, 2, 0, 393222, 2, 0, 393224, 2, 0, 458760, 2, 0, 327688, 2, 0, 262152, 2, 0, 196616, 2, 0, 655360, 2, 0, 655363, 2, 0, 655364, 2, 0, 655365, 2, 0, 655366, 2, 0, 655367, 2, 0, 655368, 2, 0, 655369, 2, 0, 655370, 2, 0, 589834, 2, 0, 524298, 2, 0, 458762, 2, 0, 393226, 2, 0, 327690, 2, 0, 262154, 2, 0, 196618, 2, 0, 131082, 2, 0, 65546, 2, 0, 10, 2, 0, -65526, 2, 0, -65527, 2, 0, -65528, 2, 0, -65529, 2, 0, -65530, 2, 0, -65531, 2, 0, -65532, 2, 0, -65533, 2, 0, -65535, 2, 0, -65534, 2, 0, -65536, 2, 0, -1, 2, 0, 65535, 2, 0, 131071, 2, 0, 196607, 2, 0, 262143, 2, 0, 327679, 2, 0, 393215, 2, 0, 458751, 2, 0, 524287, 2, 0, 589823, 2, 0, 655359, 2, 0, 720895, 2, 0, 655361, 2, 0, 655362, 2, 0)
-script = ExtResource("4_d63bs")
+script = ExtResource("4_ixvl2")
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_fsdmj")]
-position = Vector2(20, 76)
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(12, 76)
+script = ExtResource("4_kuehn")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+texture = ExtResource("5_5ryax")
+hframes = 4
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("RectangleShape2D_o0jmc")
+metadata/_edit_group_ = true
+
+[node name="Selected" type="Sprite2D" parent="Player" node_paths=PackedStringArray("map")]
+position = Vector2(0, -8)
+texture = ExtResource("6_tarol")
+script = ExtResource("7_t30mm")
+map = NodePath("../../TileMap")
+metadata/_edit_group_ = true
+
+[node name="whitecover" type="Sprite2D" parent="Player/Selected"]
+visible = false
+modulate = Color(1, 1, 1, 0.501961)
+texture = ExtResource("8_t7b41")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player/Selected"]
+libraries = {
+"": SubResource("AnimationLibrary_qyuly")
+}
+
+[node name="SoundEffects" type="AudioStreamPlayer" parent="Player"]
+stream = SubResource("AudioStreamRandomizer_q3sk1")
+script = ExtResource("12_23psc")
