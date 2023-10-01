@@ -5,6 +5,9 @@ func set_children_mouse_filter(p: Panel, m: int):
 		if "mouse_filter" in c:
 			c.mouse_filter = m
 
+func _ready():
+	set_children_mouse_filter($"../Panel" as Panel, MOUSE_FILTER_IGNORE)
+
 func _pressed():
 	var anim = $"../AnimationPlayer" as AnimationPlayer
 	var panel = $"../Panel" as Panel
