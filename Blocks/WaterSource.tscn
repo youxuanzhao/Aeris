@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdspledej88x1"]
+
+[ext_resource type="PackedScene" uid="uid://byy1fu7cwumoh" path="res://Blocks/CollisionBlock.tscn" id="1_qlgv3"]
+[ext_resource type="Script" path="res://Blocks/WaterSource.gd" id="2_w1y15"]
+
+[node name="Block" instance=ExtResource("1_qlgv3")]
+script = ExtResource("2_w1y15")

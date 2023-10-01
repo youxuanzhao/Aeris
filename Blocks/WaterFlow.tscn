@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0u7t3qb5gge6"]
+
+[ext_resource type="PackedScene" uid="uid://cr15dj28y488h" path="res://Blocks/Block.tscn" id="1_kbery"]
+[ext_resource type="Script" path="res://Blocks/WaterFlow.gd" id="2_hy2n3"]
+
+[node name="Block" instance=ExtResource("1_kbery")]
+script = ExtResource("2_hy2n3")

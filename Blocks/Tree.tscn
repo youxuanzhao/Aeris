@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://bywv7viopvih0"]
+
+[ext_resource type="PackedScene" uid="uid://byy1fu7cwumoh" path="res://Blocks/CollisionBlock.tscn" id="1_aw1g3"]
+[ext_resource type="Script" path="res://Blocks/Tree.gd" id="2_l08h8"]
+
+[node name="Block" instance=ExtResource("1_aw1g3")]
+script = ExtResource("2_l08h8")

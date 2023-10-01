@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://ck6s3y2243uc8"]
+
+[ext_resource type="PackedScene" uid="uid://cr15dj28y488h" path="res://Blocks/Block.tscn" id="1_x3ldr"]
+[ext_resource type="Script" path="res://Blocks/DeadTree.gd" id="2_2y3ui"]
+
+[node name="Block" instance=ExtResource("1_x3ldr")]
+script = ExtResource("2_2y3ui")
