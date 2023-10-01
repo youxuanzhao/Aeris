@@ -1,21 +1,20 @@
 extends Sprite2D
 
-@export var map : TileMap
-var storedAir : bool = false
+var holdingAir : bool = false
 
 func _ready():
 	$AnimationPlayer.play("idle")
-	$whitecover.visible = storedAir
+	$whitecover.visible = holdingAir
 	
 func _input(event):
 	if event.is_action_pressed("space"):
-		var Coordinate = TileManager.main.local_to_map(global_position)
-		if TileManager.main.HasAir(Coordinate) != storedAir:
-			TileManager.main.SetAir(Coordinate,storedAir)
-			storedAir = !storedAir
+		var Coordinate = TileManager.instance.local_to_map(global_position)
+		if TileManager.instance.has_air(Coordinate) != holdingAir:
+			TileManager.instance.set_air(Coordinate,holdingAir)
+			holdingAir = !holdingAir
 		else:
 			$AnimationPlayer.play("warning")
 			$AnimationPlayer.queue("idle")
 			return
-		$whitecover.visible = storedAir
+		$whitecover.visible = holdingAir
 	

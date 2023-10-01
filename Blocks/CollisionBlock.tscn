@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://byy1fu7cwumoh"]
+
+[ext_resource type="PackedScene" uid="uid://cr15dj28y488h" path="res://Blocks/Block.tscn" id="1_w57uh"]
+[ext_resource type="Script" path="res://Blocks/CollisionBlock.gd" id="2_5c6kg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i1pfl"]
+size = Vector2(8, 8)
+
+[node name="Block" instance=ExtResource("1_w57uh")]
+script = ExtResource("2_5c6kg")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D" index="0"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/StaticBody2D" index="0"]
+shape = SubResource("RectangleShape2D_i1pfl")

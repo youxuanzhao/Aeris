@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cr15dj28y488h"]
+
+[ext_resource type="Script" path="res://Blocks/Block.gd" id="1_rg8gq"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_eesk0"]
+size = Vector2(8, 8)
+
+[node name="Block" type="Node2D"]
+script = ExtResource("1_rg8gq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("PlaceholderTexture2D_eesk0")

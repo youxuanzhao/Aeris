@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bllvntpqcyscj"]
+
+[ext_resource type="PackedScene" uid="uid://byy1fu7cwumoh" path="res://Blocks/CollisionBlock.tscn" id="1_4g7j3"]
+[ext_resource type="Texture2D" uid="uid://d2galk6q01nl4" path="res://Assets/Fire.png" id="2_lyp42"]
+
+[node name="Block" instance=ExtResource("1_4g7j3")]
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_lyp42")
