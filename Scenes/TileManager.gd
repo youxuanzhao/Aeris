@@ -7,16 +7,11 @@ const symbol_layer = 1
 const mask_layer = 2
 const BlackMask = Vector3i(2,0,0)
 
+var m = {
+}
+
 func _ready():
 	instance = self
-
-	for c in get_used_cells(symbol_layer):
-		print(c)
-		var tile = get_cell_tile_data(symbol_layer, c)
-		if tile == null:
-			continue
-		print(tile.get_custom_data("type"))
-		
 	
 func has_air(c: Vector2i) -> bool:
 	return get_cell_tile_data(mask_layer, c) == null
@@ -35,6 +30,15 @@ func get_block(c: Vector2i) -> BasicBlock:
 				return n
 	
 	return null
+	
+
+func instantiate_block(c: Vector2i, type: String):
+	if type not in m:
+		m[type] = load("res://Blocks/" + type + ".tscn")
+	var block = m[type].instantiate() as BasicBlock
+	add_child(block)
+	block.set_map_position(c)
+	return block
 
 
 const movement_actions = [

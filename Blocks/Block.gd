@@ -23,18 +23,18 @@ func type():
 func map_position() -> Vector2i:
 	return TileManager.instance.local_to_map(global_position)
 
+func set_map_position(pos: Vector2i):
+	global_position = TileManager.instance.map_to_local(pos)
+
 func has_air() -> bool:
 	# If the block has air on top of it
 	return TileManager.instance.has_air(map_position())
 
-func change_to(new: PackedScene):
+func change_to(new: String):
 	# Change current block to another block
-	var pos = global_position
-	var parent = get_parent()
+	var pos = map_position()
 	queue_free()
-	var new_block = new.instance()
-	parent.add_child(new_block)
-	new_block.global_position = pos
+	TileManager.instance.instantiate_block(pos, new)
 
 const directions = [
 	TileSet.CELL_NEIGHBOR_TOP_SIDE,
