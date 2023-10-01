@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://dsbmfu75f7e23" path="res://Assets/bg.png" id="4_afwqd"]
 [ext_resource type="Script" path="res://Scripts/Start.gd" id="6_8prnd"]
 [ext_resource type="Script" path="res://Scripts/Quit.gd" id="6_d0hop"]
-[ext_resource type="Script" path="res://Scenes/startbutton.gd" id="6_ervck"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bb1w5"]
 

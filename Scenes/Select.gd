@@ -14,6 +14,8 @@ func _input(event):
 			TileManager.main.SetAir(Coordinate,storedAir)
 			storedAir = !storedAir
 		else:
+			$AnimationPlayer.play("warning")
+			$AnimationPlayer.queue("idle")
 			return
 		$whitecover.visible = storedAir
 	
