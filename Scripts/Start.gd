@@ -1,5 +1,10 @@
 extends Button
 
-
 func _pressed():
-	get_tree().change_scene_to_file("res://Scenes/main.tscn")
+	var anim = $"../../AnimationPlayer" as AnimationPlayer
+	var root = $"../.."
+	anim.play("fade_in")
+	await anim.animation_finished
+	var main = load("res://Scenes/main.tscn").instantiate()
+	root.add_child(main)
+	anim.play_backwards("fade_in")
