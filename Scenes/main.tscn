@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://byayvdf7igbsm"]
+[gd_scene load_steps=24 format=3 uid="uid://byayvdf7igbsm"]
 
 [ext_resource type="Texture2D" uid="uid://7al4f48lrkx1" path="res://Assets/tile-Sheet.png" id="1_lggcy"]
 [ext_resource type="Texture2D" uid="uid://c3n27ffky0xfd" path="res://Assets/blackmask.png" id="2_x5xds"]
@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://bf1whj28mj15c" path="res://Assets/Sounds/walk-2.wav" id="10_2ye5o"]
 [ext_resource type="AudioStream" uid="uid://ckegcskeiu1x" path="res://Assets/Sounds/walk-3.wav" id="11_mt2f0"]
 [ext_resource type="Script" path="res://Scenes/SoundEffects.gd" id="12_23psc"]
+[ext_resource type="PackedScene" uid="uid://c5ogsmf14qvwq" path="res://Scenes/menu.tscn" id="14_4qho0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_81rkx"]
 texture = ExtResource("1_lggcy")
@@ -206,3 +207,9 @@ libraries = {
 [node name="SoundEffects" type="AudioStreamPlayer" parent="Player"]
 stream = SubResource("AudioStreamRandomizer_q3sk1")
 script = ExtResource("12_23psc")
+
+[node name="Menu" parent="." instance=ExtResource("14_4qho0")]
+offset_left = 1.0
+offset_top = 35.0
+offset_right = 1.0
+offset_bottom = 35.0

@@ -1,0 +1,135 @@
+[gd_scene load_steps=16 format=3 uid="uid://c5ogsmf14qvwq"]
+
+[ext_resource type="Texture2D" uid="uid://ustqb8v6phnw" path="res://Assets/popup.png" id="1_rof16"]
+[ext_resource type="FontFile" uid="uid://cq7vcs33hn1q5" path="res://Assets/PixelifySans-VariableFont_wght.ttf" id="1_vecst"]
+[ext_resource type="Theme" uid="uid://datp7dl4fo2de" path="res://Scenes/Button.tres" id="2_sxeo2"]
+[ext_resource type="Script" path="res://Scripts/Quit.gd" id="3_qpe6n"]
+[ext_resource type="Script" path="res://Scripts/MenuButton.gd" id="4_iwcsk"]
+[ext_resource type="Texture2D" uid="uid://3naimwsydmt1" path="res://Assets/menubutton-Sheet.png" id="5_i8s2d"]
+
+[sub_resource type="Animation" id="Animation_6gfew"]
+resource_name = "fade_in"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Panel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hcy6c"]
+_data = {
+"fade_in": SubResource("Animation_6gfew")
+}
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tnq8j"]
+texture = ExtResource("1_rof16")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vaa24"]
+texture = ExtResource("5_i8s2d")
+region_rect = Rect2(0, 0, 8, 8)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tshdu"]
+texture = ExtResource("5_i8s2d")
+region_rect = Rect2(0, 0, 8, 8)
+modulate_color = Color(1, 1, 1, 0.784314)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ftpyv"]
+texture = ExtResource("5_i8s2d")
+region_rect = Rect2(8, 0, 8, 8)
+
+[sub_resource type="Theme" id="Theme_6q6rv"]
+Button/styles/hover = SubResource("StyleBoxTexture_vaa24")
+Button/styles/normal = SubResource("StyleBoxTexture_tshdu")
+Button/styles/pressed = SubResource("StyleBoxTexture_ftpyv")
+
+[sub_resource type="InputEventKey" id="InputEventKey_ogoa2"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_nvt00"]
+events = [SubResource("InputEventKey_ogoa2")]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_hcy6c")
+}
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.5
+offset_top = -29.0
+offset_right = 33.5
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_tnq8j")
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -18.0
+offset_top = 8.0
+offset_right = 18.0
+offset_bottom = 28.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_vecst")
+theme_override_font_sizes/font_size = 14
+text = "Menu"
+
+[node name="Button" type="Button" parent="CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.5
+offset_top = -3.5
+offset_right = 20.5
+offset_bottom = 12.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_sxeo2")
+text = "Quit"
+script = ExtResource("3_qpe6n")
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -11.0
+offset_top = 3.0
+offset_right = -3.0
+offset_bottom = 11.0
+grow_horizontal = 0
+focus_mode = 0
+theme = SubResource("Theme_6q6rv")
+shortcut = SubResource("Shortcut_nvt00")
+shortcut_in_tooltip = false
+script = ExtResource("4_iwcsk")
