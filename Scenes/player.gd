@@ -6,7 +6,9 @@ func _ready():
 	sfx = $SoundEffects as SoundEffects
 	
 func _input(event):
-	
+	if MyPopup.instance.is_open():
+		return
+
 	velocity = Vector2.ZERO
 	
 	if event.is_action_pressed("move_right"):

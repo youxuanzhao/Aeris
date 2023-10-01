@@ -54,6 +54,9 @@ func tick_all():
 	# TODO: Serialize all tiles
 
 func _input(event):
+	if MyPopup.instance.is_open():
+		return
+
 	# Check if is move event
 	for n in movement_actions:
 		if event.is_action_released(n):

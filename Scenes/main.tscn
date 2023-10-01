@@ -159,6 +159,7 @@ stream_2/weight = 1.0
 position = Vector2(2.08165e-12, 2.08165e-12)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
 script = ExtResource("2_58ah6")
 
 [node name="TileMap" type="TileMap" parent="."]

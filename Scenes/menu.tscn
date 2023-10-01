@@ -1,5 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://c5ogsmf14qvwq"]
+[gd_scene load_steps=17 format=3 uid="uid://c5ogsmf14qvwq"]
 
+[ext_resource type="Script" path="res://Scripts/menu.gd" id="1_6lmug"]
 [ext_resource type="Texture2D" uid="uid://ustqb8v6phnw" path="res://Assets/popup.png" id="1_rof16"]
 [ext_resource type="FontFile" uid="uid://cq7vcs33hn1q5" path="res://Assets/PixelifySans-VariableFont_wght.ttf" id="1_vecst"]
 [ext_resource type="Theme" uid="uid://datp7dl4fo2de" path="res://Scenes/Button.tres" id="2_sxeo2"]
@@ -63,6 +64,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_6lmug")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
