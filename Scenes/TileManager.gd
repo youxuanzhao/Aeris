@@ -6,21 +6,40 @@ static var instance: TileManager
 const symbol_layer = 1
 const mask_layer = 2
 const BlackMask = Vector3i(2,0,0)
+const FakeAir = Vector3i(0, 0, 1)
 
 var m = {
 }
 
 func _ready():
 	instance = self
+
 	
-func has_air(c: Vector2i) -> bool:
+	
+func has_moveable_air(c: Vector2i) -> bool:
 	return get_cell_tile_data(mask_layer, c) == null
+
+func has_air(c: Vector2i) -> bool:
+	var data = get_cell_tile_data(mask_layer, c)
+	var atlas = get_cell_atlas_coords(mask_layer, c)
+	var source = get_cell_source_id(mask_layer, c, true)
+	return data == null or (atlas == Vector2i(FakeAir.y, FakeAir.z) and source == FakeAir.x)
 
 func set_air(c: Vector2i, air: bool):
 	if air:
 		set_cell(mask_layer, c)
 	else:
 		set_cell(mask_layer, c,BlackMask.x,Vector2i(BlackMask.y,BlackMask.z))
+
+func set_fake_air(c: Vector2i, air: bool):
+	var data = get_cell_tile_data(mask_layer, c)
+	if not data:
+		return
+
+	if air:
+		set_cell(mask_layer, c, FakeAir.x, Vector2i(FakeAir.y, FakeAir.z))
+	else:
+		set_cell(mask_layer, c, BlackMask.x, Vector2i(BlackMask.y, BlackMask.z))
 
 	
 func get_block(c: Vector2i) -> BasicBlock:
