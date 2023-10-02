@@ -9,7 +9,7 @@ static func expand(pos):
 	# Check nearby empty blocks
 	for d in directions:
 		var c = TileManager.instance.get_neighbor_cell(pos, d)
-		if TileManager.instance.has_air(c) and TileManager.instance.get_block(c) == null:
+		if TileManager.instance.has_air(c) and not TileManager.instance.get_block(c):
 			TileManager.instance.instantiate_block(c, "WaterFlow")
 
 func update_distance():

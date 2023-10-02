@@ -5,7 +5,7 @@ class_name WaterFlow
 const max_distance = 2
 
 
-var distance_to_water = -1
+var distance_to_water = 0
 
 func set_distance_to_water(distance):
 	if distance < distance_to_water or distance_to_water == -1:

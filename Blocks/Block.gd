@@ -11,14 +11,14 @@ var Burnable = false
 var Burnt = false
 
 func _ready():
-	TileManager.instance.register_block(map_position(),self)
-	if $AnimationPlayer != null:
+	if get_node_or_null("AnimationPlayer"):
 		$AnimationPlayer.play("appear")
 
 func _dead():
-	TileManager.instance.deregister_block(map_position(),self)
-	if $AnimationPlayer != null:
+	if get_node_or_null("AnimationPlayer"):
 		$AnimationPlayer.play("disappear")
+		await $AnimationPlayer.animation_finished
+	queue_free()
 
 func _before_tick():
 	# Called before every tick
@@ -62,42 +62,30 @@ func get_neighborhoods_coords(coord : Vector2i = map_position()) -> Array:
 		coords.append(TileManager.instance.get_neighbor_cell(coord, d))
 	return coords
 	
-func coord_has(t:String,coord : Vector2i) -> bool:
-	if !TileManager.instance.blockDictionary.has(coord):
-		return false
-	for block in TileManager.instance.blockDictionary[coord]:
-		if block.type() == t:
-				return true
-	return false
-
 func get_neighborhoods(coord : Vector2i = map_position()):
 	# Get all the neighborhoods of the current block
 	var neighborhoods = []
-	
-	for Coord in get_neighborhoods_coords(coord):
-		if !TileManager.instance.blockDictionary.has(Coord):
-			continue
-		neighborhoods.append_array(TileManager.instance.blockDictionary[Coord])
+
+	for c in get_neighborhoods_coords(coord):
+		var block = TileManager.instance.get_block(c)
+		if block:
+			neighborhoods.append(block)
+
 	return neighborhoods
 
-func get_neighborhoods_with_type(t: String,coord : Vector2i = map_position()) -> Array:
+func get_neighborhoods_with_type(t: String, coord : Vector2i = map_position()) -> Array:
 	# Get all the neighborhoods of type t of the current block
 	var neighborhoods = []
 	
-	for Coord in get_neighborhoods_coords(coord):
-		if !TileManager.instance.blockDictionary.has(Coord):
-			continue
-		for block in TileManager.instance.blockDictionary[Coord]:
-			if block.type() == t:
-				neighborhoods.append(block)	
+	for c in get_neighborhoods_coords(coord):
+		var block = TileManager.instance.get_block(c)
+		if block and block.type() == t:
+			neighborhoods.append(block)
+		
 	return neighborhoods
 	
 func neighborhoods_has_type(t: String,coord : Vector2i = map_position()) -> bool:
-	for Coord in get_neighborhoods_coords(coord):
-		if coord_has(t,Coord):
-			return true
-	return false
-
+	return len(get_neighborhoods_with_type(t,coord)) > 0
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "disappear":
