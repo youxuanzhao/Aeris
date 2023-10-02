@@ -23,3 +23,4 @@ func _input(event):
 			return
 		$whitecover.visible = holdingAir
 	
+	TileManager.instance.tick_all()

@@ -7,8 +7,14 @@ class_name BasicBlock
 
 var lifespan = -1 # Live for x ticks, -1 for infinite
 
+var Burnable = false
+var Burnt = false
+
+func _ready():
+	$AnimationPlayer.play("appear")
+
 func _dead():
-	# Called when the block is dead
+	$AnimationPlayer.play("disappear")
 	queue_free()
 
 func _before_tick():
@@ -17,9 +23,9 @@ func _before_tick():
 
 func _tick():
 	if lifespan >= 0:
-		lifespan -= 1
 		if lifespan == 0:
 			_dead()
+		lifespan -= 1
 
 func type():
 	return "basic"
@@ -47,11 +53,15 @@ const directions = [
 	TileSet.CELL_NEIGHBOR_RIGHT_SIDE,
 ]
 
-func get_neighborhoods():
-	# Get all the neighborhoods of the current block
+func get_neighborhoods_coords() -> Array:
 	var coords = []
 	for d in directions:	
 		coords.append(TileManager.instance.get_neighbor_cell(map_position(), d))
+	return coords
+
+func get_neighborhoods():
+	# Get all the neighborhoods of the current block
+	var coords = get_neighborhoods_coords()
 	
 	var neighborhoods = []
 
