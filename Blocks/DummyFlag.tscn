@@ -5,6 +5,9 @@
 [node name="Block" instance=ExtResource("1_f6xs8")]
 next_level = 1
 
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(1e-05, 1e-05)
+
 [node name="CPUParticles2D" parent="." index="1"]
 emitting = true
 amount = 30
