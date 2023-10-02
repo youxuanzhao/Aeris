@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://4tjokc4x7x64"]
+
+[ext_resource type="FontFile" uid="uid://cq7vcs33hn1q5" path="res://Assets/PixelifySans-VariableFont_wght.ttf" id="1_el2x3"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.5
+offset_top = -9.5
+offset_right = 30.5
+offset_bottom = 9.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_el2x3")
+theme_override_font_sizes/font_size = 12
+text = "Game Over"

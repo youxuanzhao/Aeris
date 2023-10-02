@@ -13,7 +13,7 @@ offsets = PackedFloat32Array(0, 0.483444, 0.993378, 1)
 colors = PackedColorArray(0.26, 0.0845867, 0.0312, 1, 0, 0, 0, 1, 0.229455, 0.122642, 0.0910566, 1, 1, 1, 1, 1)
 
 [node name="Block" instance=ExtResource("1_ym65b")]
-scale = Vector2(1e-05, 1e-05)
+scale = Vector2(1, 1)
 script = ExtResource("2_7st30")
 
 [node name="Sprite2D" parent="." index="0"]

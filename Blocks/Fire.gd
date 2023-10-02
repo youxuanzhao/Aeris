@@ -14,3 +14,4 @@ func _tick():
 		return
 	if neighborhoods_has_type("WaterFlow") or neighborhoods_has_type("WaterSource"):
 		change_to("WaterVapor")
+	

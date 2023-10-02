@@ -6,13 +6,13 @@ class_name BasicBlock
 # The father of all blocks. With properties and methods that are common to all blocks.
 
 var lifespan = -1 # Live for x ticks, -1 for infinite
-
-var Burnable = false
-var Burnt = false
+var no_animation = false # If true, no animation will be played
 
 func _ready():
 	if get_node_or_null("AnimationPlayer"):
 		$AnimationPlayer.play("appear")
+		if no_animation:
+			$AnimationPlayer.seek(1)
 
 func _dead():
 	if get_node_or_null("AnimationPlayer"):
@@ -22,6 +22,10 @@ func _dead():
 
 func _before_tick():
 	# Called before every tick
+	pass
+
+func _after_tick():
+	# Called after every tick
 	pass
 
 func _tick():

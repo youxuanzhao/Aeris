@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2nw8e5rruo66"]
+
+[ext_resource type="PackedScene" uid="uid://b4stwqh7uu0fm" path="res://Blocks/Flag.tscn" id="1_4bxoa"]
+
+[node name="Block" instance=ExtResource("1_4bxoa")]
+detecting = ["Tree"]
+next_level = 3
+activate_frame = 3
+deactivate_frame = 2
+my_type = "TreeFlag"
+
+[node name="Sprite2D" parent="." index="0"]
+frame = 2
+
+[node name="CPUParticles2D" parent="." index="2"]
+color = Color(0.192157, 0.513726, 0.184314, 1)

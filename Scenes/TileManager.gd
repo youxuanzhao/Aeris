@@ -48,9 +48,10 @@ func get_block(c: Vector2i) -> BasicBlock:
 	
 
 
-func instantiate_block_now(c: Vector2i, type: String):
+func instantiate_block_now(c: Vector2i, type: String, no_animation = false):
 	var s = load("res://Blocks/" + type + ".tscn")
 	var block = s.instantiate()
+	block.no_animation = no_animation
 	block.set_map_position(c)
 	add_child(block)
 	return block
@@ -87,7 +88,6 @@ func update_cache():
 
 func tick_all():
 	print("tick")
-	save_state()
 	update_cache()
 	
 	for n in get_all_blocks():
@@ -97,7 +97,7 @@ func tick_all():
 	for n in get_all_blocks():
 		n._tick()
 
-	# After tick
+
 	for n in get_all_blocks():
 		if n.is_changing_to:
 			var pos = n.map_position()
@@ -108,6 +108,10 @@ func tick_all():
 		instantiate_block_now(n["pos"], n["type"])
 	new_block_queue.clear()
 
+	update_cache()
+	# After tick
+	for n in get_all_blocks():
+		n._after_tick()
 
 func save_state():
 	# Save state
@@ -154,14 +158,12 @@ func undo():
 
 	# Re-instantiate blocks
 	for n in state["blocks"]:
-		var b = instantiate_block_now(n["pos"], n["type"])
-		# TODO: Prevent animation		
-
+		instantiate_block_now(n["pos"], n["type"], true)
 
 	# Re-instantiate mask
 	for n in state["mask"]:
 		set_cell(mask_layer, n["pos"], n["type"].x, Vector2i(n["type"].y, n["type"].z))	
-	
+
 
 func _input(event):
 	if MyPopup.instance.is_open():
