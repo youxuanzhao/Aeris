@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4stwqh7uu0fm"]
+
+[ext_resource type="PackedScene" uid="uid://byy1fu7cwumoh" path="res://Blocks/CollisionBlock.tscn" id="1_paura"]
+[ext_resource type="Script" path="res://Blocks/Flag.gd" id="2_u6ido"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_g6lf7"]
+size = Vector2(8, 8)
+
+[node name="Block" instance=ExtResource("1_paura")]
+scale = Vector2(1, 1)
+script = ExtResource("2_u6ido")
+detecting = ["WaterFlow"]
+next_level = 0
+
+[node name="Sprite2D" parent="." index="0"]
+texture = SubResource("PlaceholderTexture2D_g6lf7")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." index="2"]
+emitting = false
+amount = 30
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 0.5
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 60.0
+initial_velocity_max = 150.0

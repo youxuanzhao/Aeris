@@ -2,6 +2,10 @@ extends Camera2D
 
 class_name WindowControl
 
+static var instance: WindowControl
+
+
+
 const level_scale = 8 * 11
 
 const level_views_size = [
@@ -25,6 +29,7 @@ var window_scale: float
 var current_level = 0
 
 func _ready():
+	instance = self
 	window_scale = DisplayServer.screen_get_size().y / 4.0
 	print(scale)
 	change_to_level(current_level)
