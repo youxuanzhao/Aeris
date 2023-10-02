@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://u7qv6lhms0ng" path="res://Assets/Grass.png" id="2_sip2s"]
 
 [node name="Block" instance=ExtResource("1_ap713")]
+scale = Vector2(0.666667, 0.666667)
 script = ExtResource("2_owsrl")
 
 [node name="Sprite2D" parent="." index="0"]

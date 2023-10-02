@@ -44,11 +44,23 @@ func get_block(c: Vector2i) -> BasicBlock:
 	if not cache.has(c):
 		return null
 
+	return cache[c][0]
+	
+func get_blocks(c: Vector2i) -> Array:
+	if not cache.has(c):
+		return []
 	return cache[c]
 	
-
+func coordinate_has(c : Vector2i,t:String) -> bool:
+	for block in get_blocks(c):
+		if block.type() == t:
+			return true
+	return false
 
 func instantiate_block_now(c: Vector2i, type: String, no_animation = false):
+	update_cache()
+	if coordinate_has(c,type):
+		return
 	var s = load("res://Blocks/" + type + ".tscn")
 	var block = s.instantiate()
 	block.no_animation = no_animation
@@ -58,9 +70,6 @@ func instantiate_block_now(c: Vector2i, type: String, no_animation = false):
 
 var new_block_queue = []
 func instantiate_block(c: Vector2i, type: String):
-	if get_block(c):
-		return
-
 	new_block_queue.append({
 		"pos": c,
 		"type": type
@@ -83,7 +92,10 @@ func update_cache():
 	cache.clear()
 	for n in get_all_blocks():
 		var pos = n.map_position()
-		cache[pos] = n
+		if(cache.has(pos)):
+			cache[pos].append(n)
+		else:
+			cache[pos] = [n]
 	
 
 func tick_all():
@@ -102,6 +114,7 @@ func tick_all():
 		if n.is_changing_to:
 			var pos = n.map_position()
 			instantiate_block_now(pos, n.is_changing_to)
+			n._dead()
 			n.queue_free()
 	
 	for n in new_block_queue:

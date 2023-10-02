@@ -2,6 +2,9 @@ extends Node2D
 
 class_name BasicBlock
 
+var Burnate = -1
+var Sink = false
+var Block = false
 # Basic Block
 # The father of all blocks. With properties and methods that are common to all blocks.
 
@@ -13,6 +16,10 @@ func _ready():
 		$AnimationPlayer.play("appear")
 		if no_animation:
 			$AnimationPlayer.seek(1)
+	define_property()
+	
+func define_property():
+	return
 
 func _dead():
 	if get_node_or_null("AnimationPlayer"):
@@ -60,36 +67,65 @@ const directions = [
 	TileSet.CELL_NEIGHBOR_RIGHT_SIDE,
 ]
 
-func get_neighborhoods_coords(coord : Vector2i = map_position()) -> Array:
+const ExtraDirections = [
+	TileSet.CELL_NEIGHBOR_TOP_RIGHT_CORNER,
+	TileSet.CELL_NEIGHBOR_BOTTOM_RIGHT_CORNER,
+	TileSet.CELL_NEIGHBOR_TOP_LEFT_CORNER,
+	TileSet.CELL_NEIGHBOR_BOTTOM_LEFT_CORNER,
+]
+
+func get_neighborhoods_coords(coord : Vector2i = map_position(),containsCorner : bool = false) -> Array:
 	var coords = []
 	for d in directions:	
 		coords.append(TileManager.instance.get_neighbor_cell(coord, d))
+	if !containsCorner:
+		return coords
+	for d in ExtraDirections:	
+		coords.append(TileManager.instance.get_neighbor_cell(coord, d))
 	return coords
 	
-func get_neighborhoods(coord : Vector2i = map_position()):
+func get_neighborhoods(coord : Vector2i = map_position(),containsCorner : bool = false):
 	# Get all the neighborhoods of the current block
 	var neighborhoods = []
 
-	for c in get_neighborhoods_coords(coord):
-		var block = TileManager.instance.get_block(c)
-		if block:
-			neighborhoods.append(block)
+	for c in get_neighborhoods_coords(coord,containsCorner):
+		for block in TileManager.instance.get_blocks(c):
+			if block:
+				neighborhoods.append(block)
 
 	return neighborhoods
+	
+func CoordinateBurnable(c:Vector2i) -> bool:
+	for block in TileManager.instance.get_blocks(c):
+		print_debug(block.Burnate)
+		if block.Burnate > 0:
+			print_debug("true")
+			return true
+	return false
 
-func get_neighborhoods_with_type(t: String, coord : Vector2i = map_position()) -> Array:
+func coordinate_has(c : Vector2i,t:String) -> bool:
+	for block in TileManager.instance.get_blocks(c):
+		if block.type() == t:
+			return true
+	return false
+
+func get_neighborhoods_with_type(t: String, coord : Vector2i = map_position(),containsCorner : bool = false) -> Array:
 	# Get all the neighborhoods of type t of the current block
 	var neighborhoods = []
 	
-	for c in get_neighborhoods_coords(coord):
-		var block = TileManager.instance.get_block(c)
-		if block and block.type() == t:
-			neighborhoods.append(block)
+	for c in get_neighborhoods_coords(coord,containsCorner):
+		for block in TileManager.instance.get_blocks(c):
+			if block.type() == t:
+				neighborhoods.append(block)
 		
 	return neighborhoods
 	
-func neighborhoods_has_type(t: String,coord : Vector2i = map_position()) -> bool:
-	return len(get_neighborhoods_with_type(t,coord)) > 0
+func neighborhoods_has_type(t: String,coord : Vector2i = map_position(),containsCorner : bool = false) -> bool:
+	for c in get_neighborhoods_coords(coord,containsCorner):
+		for block in TileManager.instance.get_blocks(c):
+			if block.type() == t:
+				return true
+	return false
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "disappear":

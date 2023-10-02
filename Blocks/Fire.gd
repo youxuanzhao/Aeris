@@ -14,7 +14,11 @@ func _tick():
 		return
 	if neighborhoods_has_type("WaterFlow") or neighborhoods_has_type("WaterSource"):
 		change_to("WaterVapor")
+		
+	for block in TileManager.instance.get_blocks(map_position()):
+		if block.Burnate > 0:
+			block._dead()
 
 	for c in get_neighborhoods_coords():
-		if TileManager.instance.has_air(c) and not TileManager.instance.get_block(c):
-			TileManager.instance.instantiate_block(c, "FireSpark")
+		if TileManager.instance.has_air(c) and CoordinateBurnable(c) and !coordinate_has(c,"Fire"):
+			TileManager.instance.instantiate_block(c, "Fire")

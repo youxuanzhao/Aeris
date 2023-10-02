@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://t3gi76qnrpla"]
+
+[ext_resource type="PackedScene" uid="uid://rfrp7mod1i4u" path="res://Blocks/Grass.tscn" id="1_2ptea"]
+[ext_resource type="Script" path="res://Blocks/DeadGrass.gd" id="2_ertfw"]
+[ext_resource type="Texture2D" uid="uid://m7tx2qqwtosu" path="res://Assets/DeadGrass.png" id="3_0otkc"]
+
+[node name="Block" instance=ExtResource("1_2ptea")]
+script = ExtResource("2_ertfw")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_0otkc")
