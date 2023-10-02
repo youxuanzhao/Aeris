@@ -18,7 +18,7 @@ func save_state():
 		"holdingAir": $Selected.holdingAir
 	})
 
-	if states.size() > 10:
+	if states.size() > 20:
 		states.remove_at(0)
 
 func undo():

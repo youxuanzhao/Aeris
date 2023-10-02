@@ -160,7 +160,7 @@ func save_state():
 		"mask": mask	
 	})
 
-	if states.size() > 10:
+	if states.size() > 20:
 		states.remove_at(0)
 
 func undo():
