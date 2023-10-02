@@ -75,10 +75,21 @@ func _input(event):
 	
 	
 	if velocity.length() > 0:
+		var prev_pos = position
 		var coll = move_and_collide(velocity)
+
+		var screen_pos = get_screen_transform().origin
+		var screen_size = get_viewport().get_visible_rect().size
+		var rect = Rect2( Vector2(0, 0) , screen_size)
+		print(rect)
+
 		if coll:
 			# Collision happens
+			sfx.play_audio("collide")	
+		elif not rect.has_point(screen_pos):
+			# Out of bounds
 			sfx.play_audio("collide")
+			position = prev_pos
 		else:
 			# Normal movement
 			sfx.play_audio("walk")

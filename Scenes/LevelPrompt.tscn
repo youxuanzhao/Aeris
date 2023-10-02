@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=3 uid="uid://cebh765fpdiw7"]
+
+[ext_resource type="Script" path="res://Scenes/LevelPrompt.gd" id="1_6j82d"]
+[ext_resource type="FontFile" uid="uid://cq7vcs33hn1q5" path="res://Assets/PixelifySans-VariableFont_wght.ttf" id="2_bdqrq"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 80.0
+offset_bottom = 80.0
+script = ExtResource("1_6j82d")
+
+[node name="Popup" type="PopupPanel" parent="."]
+size = Vector2i(80, 80)
+visible = true
+
+[node name="Panel" type="Panel" parent="Popup"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="Popup/Panel"]
+offset_top = 5.0
+offset_right = 74.0
+offset_bottom = 77.0
+theme_override_fonts/font = ExtResource("2_bdqrq")
+text = "Level 0"
+horizontal_alignment = 1
+
+[node name="Prompt" type="Label" parent="Popup/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.5
+offset_top = -10.0
+offset_right = 44.5
+offset_bottom = 62.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_bdqrq")
+theme_override_font_sizes/font_size = 6
+text = "Description
+Multipleline
+Whatever"
+horizontal_alignment = 1
