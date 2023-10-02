@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://ds0q4c4qj8yh1"]
+
+[ext_resource type="Texture2D" uid="uid://bxipikdkg7obf" path="res://Assets/tiles2-Sheet.png" id="1_cpb4f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k7nb2"]
+size = Vector2(8, 8)
+
+[node name="Obstacle" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 3
+texture = ExtResource("1_cpb4f")
+region_enabled = true
+region_rect = Rect2(16, 8, 8, 8)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/StaticBody2D"]
+shape = SubResource("RectangleShape2D_k7nb2")

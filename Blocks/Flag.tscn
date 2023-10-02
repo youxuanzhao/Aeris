@@ -11,6 +11,7 @@ detecting = ["WaterFlow"]
 next_level = 0
 activate_frame = 0
 deactivate_frame = 0
+my_type = "Flag"
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("3_ctj58")
