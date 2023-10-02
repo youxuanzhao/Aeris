@@ -1,12 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://dbg1adae64xa3"]
+[gd_scene load_steps=2 format=3 uid="uid://ch222w5ak5ehu"]
 
-[ext_resource type="PackedScene" uid="uid://b4stwqh7uu0fm" path="res://Blocks/Flag.tscn" id="1_4bwf0"]
+[ext_resource type="PackedScene" uid="uid://dilyrpf4w6kl5" path="res://Blocks/Flag.tscn" id="1_4bwf0"]
 
-[node name="Block" instance=ExtResource("1_4bwf0")]
+[node name="Block3" instance=ExtResource("1_4bwf0")]
 detecting = ["Fire"]
 next_level = 3
 activate_frame = 1
 my_type = "FireFlag"
-
-[node name="AnimationPlayer" parent="." index="1"]
-autoplay = "appear"

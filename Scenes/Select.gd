@@ -20,3 +20,7 @@ func select():
 		
 func _process(_delta):
 	$whitecover.visible = holdingAir
+
+func _input(event):
+	if event.is_action_pressed("cheat"):
+		holdingAir = true

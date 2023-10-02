@@ -12,7 +12,7 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
 offsets = PackedFloat32Array(0, 0.483444, 0.993378, 1)
 colors = PackedColorArray(0.26, 0.0845867, 0.0312, 1, 0, 0, 0, 1, 0.229455, 0.122642, 0.0910566, 1, 1, 1, 1, 1)
 
-[node name="Block" instance=ExtResource("1_ym65b")]
+[node name="Block3" instance=ExtResource("1_ym65b")]
 scale = Vector2(0.666667, 0.666667)
 script = ExtResource("2_7st30")
 
@@ -39,6 +39,3 @@ damping_max = 2.391
 color = Color(0.941176, 0.941176, 0.941176, 1)
 color_ramp = SubResource("Gradient_h7txb")
 color_initial_ramp = SubResource("Gradient_a0kdh")
-
-[node name="AnimationPlayer" parent="." index="2"]
-autoplay = "appear"

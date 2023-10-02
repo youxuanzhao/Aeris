@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://cxhlvna87vuhj"]
 
-[ext_resource type="PackedScene" uid="uid://b4stwqh7uu0fm" path="res://Blocks/Flag.tscn" id="1_vnra2"]
+[ext_resource type="PackedScene" uid="uid://dilyrpf4w6kl5" path="res://Blocks/Flag.tscn" id="1_vnra2"]
 
-[node name="Block" instance=ExtResource("1_vnra2")]
+[node name="Block3" instance=ExtResource("1_vnra2")]
 detecting = ["Air"]
 next_level = 5
 activate_frame = 7
@@ -11,6 +11,3 @@ my_type = "AirFlag"
 
 [node name="Sprite2D" parent="." index="0"]
 frame = 6
-
-[node name="AnimationPlayer" parent="." index="1"]
-autoplay = "appear"
