@@ -81,7 +81,6 @@ func _input(event):
 		var screen_pos = get_screen_transform().origin
 		var screen_size = get_viewport().get_visible_rect().size
 		var rect = Rect2( Vector2(0, 0) , screen_size)
-		print(rect)
 
 		if coll:
 			# Collision happens
@@ -97,12 +96,7 @@ func _input(event):
 			TileManager.instance.tick_all()
 	
 	position = TileManager.instance.map_to_local(TileManager.instance.local_to_map(position))
-
-	# Check if position is out of homearea
-	if WindowControl.instance.current_level == 0:
-		if position.x < 88 or position.x > 176 or position.y < 88 or position.y > 176:
-			WindowControl.instance.change_to_level(1)
-		
+	
 
 	if event.is_action_pressed("space"):
 		save_state()

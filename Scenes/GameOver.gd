@@ -40,6 +40,7 @@ func set_children_mouse_filter(p, m: int):
 func _ready():
 	instance = self
 	fade_out()
+	$AnimationPlayer.seek(0)
 	set_children_mouse_filter($CanvasLayer, MOUSE_FILTER_IGNORE)
 	
 	$"CanvasLayer/Panel/Undo".pressed.connect(undo)
