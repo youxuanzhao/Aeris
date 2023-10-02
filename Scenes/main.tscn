@@ -25,7 +25,7 @@
 [ext_resource type="AudioStream" uid="uid://ckegcskeiu1x" path="res://Assets/Sounds/walk-3.wav" id="11_mt2f0"]
 [ext_resource type="PackedScene" path="res://Blocks/FireSpark.tscn" id="12_7rbcp"]
 [ext_resource type="Script" path="res://Scenes/SoundEffects.gd" id="12_23psc"]
-[ext_resource type="PackedScene" path="res://Blocks/Obstacle.tscn" id="13_6nh4l"]
+[ext_resource type="PackedScene" uid="uid://ds0q4c4qj8yh1" path="res://Blocks/Obstacle.tscn" id="13_6nh4l"]
 [ext_resource type="PackedScene" uid="uid://busuglrsye5i6" path="res://Blocks/DeadTree.tscn" id="13_8j8ee"]
 [ext_resource type="PackedScene" uid="uid://c5ogsmf14qvwq" path="res://Scenes/menu.tscn" id="14_4qho0"]
 [ext_resource type="PackedScene" uid="uid://4tjokc4x7x64" path="res://Scenes/GameOver.tscn" id="25_k47xq"]

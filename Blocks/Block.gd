@@ -23,7 +23,7 @@ func define_property():
 
 func _dead():
 	if get_node_or_null("AnimationPlayer"):
-		$AnimationPlayer.play("disappear")
+		$AnimationPlayer.play_backwards("appear")
 		await $AnimationPlayer.animation_finished
 	queue_free()
 
