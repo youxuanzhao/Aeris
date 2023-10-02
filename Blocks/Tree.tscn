@@ -9,6 +9,7 @@ scale = Vector2(0.666667, 0.666667)
 script = ExtResource("2_l08h8")
 
 [node name="Sprite2D" parent="." index="0"]
+scale = Vector2(1e-05, 1e-05)
 texture = ExtResource("3_u34gp")
 hframes = 3
 vframes = 3

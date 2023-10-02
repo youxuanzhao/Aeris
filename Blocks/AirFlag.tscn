@@ -11,3 +11,6 @@ my_type = "AirFlag"
 
 [node name="Sprite2D" parent="." index="0"]
 frame = 6
+
+[node name="CPUParticles2D" parent="." index="1"]
+color = Color(0.819608, 0.737255, 0.721569, 1)

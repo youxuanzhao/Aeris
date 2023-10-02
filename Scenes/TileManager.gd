@@ -182,7 +182,7 @@ func undo():
 
 	# Re-instantiate blocks
 	for n in state["blocks"]:
-		instantiate_block_now(n["pos"], n["type"], true, true)
+		instantiate_block_now(n["pos"], n["type"], false, true)
 		print_debug(n["type"])
 
 	# Re-instantiate mask

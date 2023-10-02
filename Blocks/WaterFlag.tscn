@@ -11,3 +11,6 @@ my_type = "WaterFlag"
 
 [node name="Sprite2D" parent="." index="0"]
 frame = 4
+
+[node name="CPUParticles2D" parent="." index="1"]
+color = Color(0.207843, 0.560784, 0.690196, 1)

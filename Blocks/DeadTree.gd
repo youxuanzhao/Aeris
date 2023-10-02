@@ -1,5 +1,8 @@
 extends BasicBlock
 
+func define_property():
+	Block = true
+
 func _tick():
 	if (not neighborhoods_has_type("Fire")) and has_air():
 		# Resurrect
