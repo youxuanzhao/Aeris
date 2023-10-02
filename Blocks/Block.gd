@@ -11,6 +11,10 @@ func _dead():
 	# Called when the block is dead
 	queue_free()
 
+func _before_tick():
+	# Called before every tick
+	pass
+
 func _tick():
 	if lifespan >= 0:
 		lifespan -= 1
@@ -30,11 +34,11 @@ func has_air() -> bool:
 	# If the block has air on top of it
 	return TileManager.instance.has_air(map_position())
 
+var is_changing_to = null
 func change_to(new: String):
 	# Change current block to another block
-	var pos = map_position()
-	queue_free()
-	TileManager.instance.instantiate_block(pos, new)
+	# This will happen at the end of current tick
+	is_changing_to = new
 
 const directions = [
 	TileSet.CELL_NEIGHBOR_TOP_SIDE,

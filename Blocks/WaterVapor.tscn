@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6pcyyrsu0jwu"]
+
+[ext_resource type="PackedScene" uid="uid://cr15dj28y488h" path="res://Blocks/Block.tscn" id="1_vxln8"]
+[ext_resource type="Script" path="res://Blocks/WaterVapor.gd" id="2_843lp"]
+[ext_resource type="Texture2D" uid="uid://bxipikdkg7obf" path="res://Assets/tiles2-Sheet.png" id="3_72suk"]
+
+[node name="Block" instance=ExtResource("1_vxln8")]
+script = ExtResource("2_843lp")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_72suk")
+region_enabled = true
+region_rect = Rect2(16, 16, 8, 8)

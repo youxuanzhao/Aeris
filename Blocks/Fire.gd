@@ -1,10 +1,9 @@
 extends CollisionBlock
 
-func _ready():
-	lifespan = 3
-
 func type():
-	return "fire"
+	return "Fire"
 
-func _dead():
-	change_to("CollisionBlock")
+func _tick():
+	# Check for water
+	if len(get_neighborhoods_with_type("WaterFlow") + get_neighborhoods_with_type("WaterSource")) > 0:
+		change_to("WaterVapor")

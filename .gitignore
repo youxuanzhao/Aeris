@@ -13,3 +13,5 @@ data_*/
 *.aseprite
 *.DS_Store
 .godot/
+
+Movie/
