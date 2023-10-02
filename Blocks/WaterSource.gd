@@ -12,24 +12,8 @@ static func expand(pos):
 		if TileManager.instance.has_air(c) and TileManager.instance.get_block(c) == null:
 			TileManager.instance.instantiate_block(c, "WaterFlow")
 
-
-func get_neighborhoods_with_type_at(c: Vector2i, t: String):
-	# Get all the neighborhoods of type t of the current block
-	var coords = []
-	for d in directions:	
-		coords.append(TileManager.instance.get_neighbor_cell(c, d))
-	
-	var neighborhoods = []
-
-	for n in TileManager.instance.get_children():
-		if n is BasicBlock:
-			if n.type() == t and n.map_position() in coords:
-				neighborhoods.append(n)	
-
-	return neighborhoods
-
 func update_distance():
-	var neighborhoods = get_neighborhoods_with_type_at(map_position(), "WaterFlow")
+	var neighborhoods = get_neighborhoods_with_type("WaterFlow")
 	var next_neighborhoods = []
 	var searched = []
 	var i = 1

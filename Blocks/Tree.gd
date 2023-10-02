@@ -1,23 +1,31 @@
 extends CollisionBlock
 
-var has_triggered = false
+var activate = false
+
+func clean_up():
+	for d in directions:
+		var c = TileManager.instance.get_neighbor_cell(map_position(), d)
+		TileManager.instance.set_fake_air(c, false)
 
 func _tick():
 	super._tick()
-	if has_air():
-		has_triggered = true
+	if not has_air() and activate:
+		clean_up()
+
+	activate = has_air()
+
+	if activate:
 		for d in directions:
 			var c = TileManager.instance.get_neighbor_cell(map_position(), d)
-			if TileManager.instance.has_air(c) == false:
-				TileManager.instance.instantiate_block(c,"FakeAir")
-				TileManager.instance.set_air(c, true)
-	if !has_air() && has_triggered:
-		for d in directions:
-			var c = TileManager.instance.get_neighbor_cell(map_position(), d)
-			if TileManager.instance.get_block(c) != null:
-				if TileManager.instance.get_block(c).type() == "FakeAir":
-					TileManager.instance.get_block(c)._dead()
-					TileManager.instance.set_air(c, false)
+			TileManager.instance.set_fake_air(c, true)
+	
+	if len(get_neighborhoods_with_type("Fire")) > 0:
+		change_to("DeadTree")
+		if activate:
+			clean_up()
+
+
+
 
 func type():
 	return "Tree"

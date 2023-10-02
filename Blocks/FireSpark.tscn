@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://3gdp2drpndtp"]
+
+[ext_resource type="Script" path="res://Blocks/FireSpark.gd" id="1_7n6ol"]
+[ext_resource type="Texture2D" uid="uid://cq43ntoc2kpg5" path="res://Assets/spark.png" id="2_6p3gi"]
+
+[sub_resource type="Gradient" id="Gradient_6pjx8"]
+offsets = PackedFloat32Array(0.0794702, 0.139073, 0.556291)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_u45ai"]
+offsets = PackedFloat32Array(0, 0.483444, 0.993378, 1)
+colors = PackedColorArray(0.26, 0.0845867, 0.0312, 1, 0, 0, 0, 1, 0.229455, 0.122642, 0.0910566, 1, 1, 1, 1, 1)
+
+[node name="Block" type="Node2D"]
+script = ExtResource("1_7n6ol")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_6p3gi")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 12
+lifetime = 7.06
+randomness = 0.23
+emission_shape = 1
+emission_sphere_radius = 2.6
+gravity = Vector2(0, -5)
+damping_min = 1.171
+damping_max = 2.391
+color = Color(0.941176, 0.941176, 0.941176, 1)
+color_ramp = SubResource("Gradient_6pjx8")
+color_initial_ramp = SubResource("Gradient_u45ai")

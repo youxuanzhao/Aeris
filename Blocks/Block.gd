@@ -7,9 +7,17 @@ class_name BasicBlock
 
 var lifespan = -1 # Live for x ticks, -1 for infinite
 
+var Burnable = false
+var Burnt = false
+
+func _ready():
+	if $AnimationPlayer != null:
+		$AnimationPlayer.play("appear")
+
 func _dead():
-	# Called when the block is dead
 	queue_free()
+	if $AnimationPlayer != null:
+		$AnimationPlayer.play("disappear")
 
 func _before_tick():
 	# Called before every tick
@@ -17,12 +25,12 @@ func _before_tick():
 
 func _tick():
 	if lifespan >= 0:
-		lifespan -= 1
 		if lifespan == 0:
 			_dead()
+		lifespan -= 1
 
 func type():
-	return "basic"
+	return "Block"
 
 func map_position() -> Vector2i:
 	return TileManager.instance.local_to_map(global_position)
@@ -47,11 +55,21 @@ const directions = [
 	TileSet.CELL_NEIGHBOR_RIGHT_SIDE,
 ]
 
-func get_neighborhoods():
-	# Get all the neighborhoods of the current block
+func get_neighborhoods_coords(coord : Vector2i = map_position()) -> Array:
 	var coords = []
 	for d in directions:	
-		coords.append(TileManager.instance.get_neighbor_cell(map_position(), d))
+		coords.append(TileManager.instance.get_neighbor_cell(coord, d))
+	return coords
+	
+func coord_has(t:String,coord : Vector2i) -> bool:
+	for n in TileManager.instance.get_children():
+		if n is BasicBlock && n.map_position() == coord && n.type() == t:
+				return true
+	return false
+
+func get_neighborhoods(coord : Vector2i = map_position()):
+	# Get all the neighborhoods of the current block
+	var coords = get_neighborhoods_coords(coord)
 	
 	var neighborhoods = []
 
@@ -62,12 +80,9 @@ func get_neighborhoods():
 			
 	return neighborhoods
 
-
-func get_neighborhoods_with_type(t: String):
+func get_neighborhoods_with_type(t: String,coord : Vector2i = map_position()) -> Array:
 	# Get all the neighborhoods of type t of the current block
-	var coords = []
-	for d in directions:	
-		coords.append(TileManager.instance.get_neighbor_cell(map_position(), d))
+	var coords = get_neighborhoods_coords(coord)
 	
 	var neighborhoods = []
 
@@ -77,3 +92,6 @@ func get_neighborhoods_with_type(t: String):
 				neighborhoods.append(n)	
 
 	return neighborhoods
+	
+func neighborhoods_has_type(t: String,coord : Vector2i = map_position()) -> bool:
+	return get_neighborhoods_with_type(t,coord).size() > 0

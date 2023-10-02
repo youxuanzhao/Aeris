@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://seumn6ug0v3j" path="res://Assets/whitemask.png" id="2_7thky"]
 [ext_resource type="Script" path="res://Blocks/FakeAir.gd" id="2_cv7pw"]
 
-[node name="Block" instance=ExtResource("1_gpkbq")]
+[node name="Block2" instance=ExtResource("1_gpkbq")]
 script = ExtResource("2_cv7pw")
 
 [node name="Sprite2D" parent="." index="0"]

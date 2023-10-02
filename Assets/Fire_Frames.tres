@@ -1,0 +1,46 @@
+[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://fp3p567lnnb4"]
+
+[ext_resource type="Texture2D" uid="uid://b816w7mkfagex" path="res://Assets/Fire-Sheet.png" id="1_ngeby"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uosgx"]
+atlas = ExtResource("1_ngeby")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rosw7"]
+atlas = ExtResource("1_ngeby")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u21aj"]
+atlas = ExtResource("1_ngeby")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4im2r"]
+atlas = ExtResource("1_ngeby")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m0q8f"]
+atlas = ExtResource("1_ngeby")
+region = Rect2(32, 0, 8, 8)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uosgx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rosw7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u21aj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4im2r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m0q8f")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]

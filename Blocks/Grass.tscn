@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://rfrp7mod1i4u"]
+
+[ext_resource type="PackedScene" uid="uid://cr15dj28y488h" path="res://Blocks/Block.tscn" id="1_ap713"]
+[ext_resource type="Script" path="res://Blocks/Grass.gd" id="2_owsrl"]
+[ext_resource type="Texture2D" uid="uid://u7qv6lhms0ng" path="res://Assets/Grass.png" id="2_sip2s"]
+
+[node name="Block" instance=ExtResource("1_ap713")]
+scale = Vector2(1e-05, 1e-05)
+script = ExtResource("2_owsrl")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_sip2s")
+script = ExtResource("2_owsrl")
