@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Scripts/WindowControl.gd" id="2_58ah6"]
 [ext_resource type="Texture2D" uid="uid://c3n27ffky0xfd" path="res://Assets/blackmask.png" id="2_x5xds"]
 [ext_resource type="PackedScene" uid="uid://cr15dj28y488h" path="res://Blocks/Block.tscn" id="4_dctyq"]
-[ext_resource type="PackedScene" uid="uid://bywv7viopvih0" path="res://Blocks/Tree.tscn" id="4_g6rcq"]
+[ext_resource type="PackedScene" uid="uid://ber7ixypf2no7" path="res://Blocks/Tree.tscn" id="4_g6rcq"]
 [ext_resource type="Script" path="res://Scenes/TileManager.gd" id="4_ixvl2"]
 [ext_resource type="Script" path="res://Scenes/player.gd" id="4_kuehn"]
 [ext_resource type="PackedScene" uid="uid://byy1fu7cwumoh" path="res://Blocks/CollisionBlock.tscn" id="5_2uv8i"]
@@ -14,12 +14,12 @@
 [ext_resource type="Script" path="res://Scenes/Select.gd" id="7_t30mm"]
 [ext_resource type="PackedScene" uid="uid://bdspledej88x1" path="res://Blocks/WaterSource.tscn" id="8_c7jux"]
 [ext_resource type="Texture2D" uid="uid://seumn6ug0v3j" path="res://Assets/whitemask.png" id="8_t7b41"]
-[ext_resource type="PackedScene" uid="uid://rfrp7mod1i4u" path="res://Blocks/Grass.tscn" id="9_i53o7"]
+[ext_resource type="PackedScene" path="res://Blocks/Grass.tscn" id="9_i53o7"]
 [ext_resource type="AudioStream" uid="uid://4dganygatfac" path="res://Assets/Sounds/walk-1.wav" id="9_j40o6"]
 [ext_resource type="AudioStream" uid="uid://bf1whj28mj15c" path="res://Assets/Sounds/walk-2.wav" id="10_2ye5o"]
 [ext_resource type="AudioStream" uid="uid://ckegcskeiu1x" path="res://Assets/Sounds/walk-3.wav" id="11_mt2f0"]
 [ext_resource type="Script" path="res://Scenes/SoundEffects.gd" id="12_23psc"]
-[ext_resource type="PackedScene" path="res://Scenes/menu.tscn" id="14_4qho0"]
+[ext_resource type="PackedScene" uid="uid://c5ogsmf14qvwq" path="res://Scenes/menu.tscn" id="14_4qho0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_81rkx"]
 texture = ExtResource("1_lggcy")
