@@ -81,10 +81,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -33.5
+offset_left = -33.0
 offset_top = -29.0
-offset_right = 33.5
-offset_bottom = 29.0
+offset_right = 34.0
+offset_bottom = 35.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -96,15 +96,15 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -18.0
-offset_top = 8.0
+offset_top = 9.0
 offset_right = 18.0
-offset_bottom = 28.0
+offset_bottom = 29.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("1_vecst")
 theme_override_font_sizes/font_size = 14
 text = "Menu"
 
-[node name="Button" type="Button" parent="CanvasLayer/Panel"]
+[node name="Reset" type="Button" parent="CanvasLayer/Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -112,12 +112,30 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -20.5
-offset_top = -3.5
+offset_top = -6.0
 offset_right = 20.5
-offset_bottom = 12.5
+offset_bottom = 6.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_sxeo2")
+theme_override_font_sizes/font_size = 7
+text = "Reset"
+
+[node name="Quit" type="Button" parent="CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.5
+offset_top = 8.0
+offset_right = 20.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_sxeo2")
+theme_override_font_sizes/font_size = 7
 text = "Quit"
 script = ExtResource("3_qpe6n")
 

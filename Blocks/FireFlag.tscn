@@ -7,3 +7,6 @@ detecting = ["Fire"]
 next_level = 2
 activate_frame = 1
 my_type = "FireFlag"
+
+[node name="AnimationPlayer" parent="." index="1"]
+autoplay = "appear"

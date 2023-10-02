@@ -18,9 +18,15 @@ func _ready():
 func type():
 	return my_type
 
+func game_over():
+	pass
+
 func _after_tick():
 	flag = false
 	for d in detecting:
+		if d == "Air" and has_air():
+			flag = true
+			break
 		if neighborhoods_has_type(d):
 			flag = true
 			break
@@ -30,8 +36,8 @@ func _after_tick():
 		if next_level > 4:
 			# Game Over
 			pass
-			
-		WindowControl.instance.change_to_level(next_level)
+		else:	
+			WindowControl.instance.change_to_level(next_level)
 
 		$CPUParticles2D.emitting = true
 	

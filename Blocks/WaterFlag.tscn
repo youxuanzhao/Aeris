@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://p84qs3akc8gp"]
+
+[ext_resource type="PackedScene" uid="uid://b4stwqh7uu0fm" path="res://Blocks/Flag.tscn" id="1_seo7k"]
+
+[node name="Block" instance=ExtResource("1_seo7k")]
+detecting = ["WaterFlow", "WaterSource"]
+next_level = 4
+activate_frame = 5
+deactivate_frame = 4
+my_type = "WaterFlag"
+
+[node name="Sprite2D" parent="." index="0"]
+frame = 4
+
+[node name="AnimationPlayer" parent="." index="1"]
+autoplay = "appear"

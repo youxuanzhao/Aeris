@@ -12,5 +12,8 @@ my_type = "TreeFlag"
 [node name="Sprite2D" parent="." index="0"]
 frame = 2
 
+[node name="AnimationPlayer" parent="." index="1"]
+autoplay = "appear"
+
 [node name="CPUParticles2D" parent="." index="2"]
 color = Color(0.192157, 0.513726, 0.184314, 1)

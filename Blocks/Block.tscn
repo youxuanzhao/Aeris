@@ -5,23 +5,9 @@
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_eesk0"]
 size = Vector2(8, 8)
 
-[sub_resource type="Animation" id="Animation_alccb"]
-resource_name = "appear"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(0.258817, 3.605),
-"update": 0,
-"values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_1jfuf"]
 resource_name = "disappear"
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -29,15 +15,31 @@ tracks/0/path = NodePath(".:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(0.183011, 2.73208),
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.183011, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_vm68e"]
+resource_name = "appear"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_i3jas"]
 _data = {
-"appear": SubResource("Animation_alccb"),
+"appear": SubResource("Animation_vm68e"),
 "disappear": SubResource("Animation_1jfuf")
 }
 
@@ -49,7 +51,6 @@ script = ExtResource("1_rg8gq")
 texture = SubResource("PlaceholderTexture2D_eesk0")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "appear"
 speed_scale = 0.5
 libraries = {
 "": SubResource("AnimationLibrary_i3jas")
