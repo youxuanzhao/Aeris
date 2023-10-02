@@ -10,6 +10,7 @@ deactivate_frame = 4
 my_type = "WaterFlag"
 
 [node name="Sprite2D" parent="." index="0"]
+z_index = 10
 frame = 4
 
 [node name="AnimationPlayer" parent="." index="1"]

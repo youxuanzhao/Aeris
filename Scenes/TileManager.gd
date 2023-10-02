@@ -57,10 +57,11 @@ func coordinate_has(c : Vector2i,t:String) -> bool:
 			return true
 	return false
 
-func instantiate_block_now(c: Vector2i, type: String, no_animation = false):
-	update_cache()
-	if coordinate_has(c,type):
-		return
+func instantiate_block_now(c: Vector2i, type: String, no_animation = false, forced = false):
+	if !forced:
+		update_cache()
+		if coordinate_has(c,type):
+			return
 	var s = load("res://Blocks/" + type + ".tscn")
 	var block = s.instantiate()
 	block.no_animation = no_animation
@@ -172,6 +173,8 @@ func undo():
 	for n in get_children():
 		if n is BasicBlock:
 			n.queue_free()
+			
+	cache.clear()
 	
 	# Clear mask
 	for c in get_used_cells(mask_layer):
@@ -179,7 +182,8 @@ func undo():
 
 	# Re-instantiate blocks
 	for n in state["blocks"]:
-		instantiate_block_now(n["pos"], n["type"], true)
+		instantiate_block_now(n["pos"], n["type"], true, true)
+		print_debug(n["type"])
 
 	# Re-instantiate mask
 	for n in state["mask"]:

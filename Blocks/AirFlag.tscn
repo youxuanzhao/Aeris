@@ -10,6 +10,7 @@ deactivate_frame = 6
 my_type = "AirFlag"
 
 [node name="Sprite2D" parent="." index="0"]
+z_index = 10
 frame = 6
 
 [node name="AnimationPlayer" parent="." index="1"]

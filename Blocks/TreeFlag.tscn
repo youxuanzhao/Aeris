@@ -10,6 +10,7 @@ deactivate_frame = 2
 my_type = "TreeFlag"
 
 [node name="Sprite2D" parent="." index="0"]
+z_index = 10
 frame = 2
 
 [node name="AnimationPlayer" parent="." index="1"]

@@ -5,10 +5,14 @@
 [ext_resource type="Texture2D" uid="uid://bxipikdkg7obf" path="res://Assets/tiles2-Sheet.png" id="3_72suk"]
 
 [node name="Block" instance=ExtResource("1_vxln8")]
+scale = Vector2(0.666667, 0.666667)
 script = ExtResource("2_843lp")
 
 [node name="Sprite2D" parent="." index="0"]
-z_index = 11
+z_index = 12
 texture = ExtResource("3_72suk")
 region_enabled = true
 region_rect = Rect2(16, 16, 8, 8)
+
+[node name="AnimationPlayer" parent="." index="1"]
+autoplay = "appear"

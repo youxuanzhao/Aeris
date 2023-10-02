@@ -2,7 +2,7 @@ extends CollisionBlock
 
 func _ready():
 	super._ready()
-	lifespan = 4
+	lifespan = -1
 
 func type():
 	return "Fire"
