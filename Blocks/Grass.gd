@@ -4,5 +4,6 @@ func type():
 	return "Grass"
 
 func _tick():
-	if len(get_neighborhoods_with_type("WaterFlow") + get_neighborhoods_with_type("WaterSource")) > 0:
-		change_to("WaterVapor")
+	for coordinate in get_neighborhoods_coords():
+		if !coord_has("Grass",coordinate):
+			TileManager.instance.instantiate_block(coordinate,"Grass")
