@@ -112,6 +112,14 @@ func tick_all():
 	# After tick
 	for n in get_all_blocks():
 		n._after_tick()
+	
+	# Check Tree / Fire grow on player
+	var c = local_to_map(Player.instance.global_position)
+
+	if get_block(c) and get_block(c).type() in ["Tree", "Fire"]:
+		print("Game over")
+		get_tree().quit()
+	
 
 func save_state():
 	# Save state

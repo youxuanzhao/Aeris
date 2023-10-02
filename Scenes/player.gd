@@ -87,7 +87,6 @@ func _input(event):
 	if WindowControl.instance.current_level == 0:
 		if position.x < 88 or position.x > 176 or position.y < 88 or position.y > 176:
 			WindowControl.instance.change_to_level(1)
-
 		
 
 	if event.is_action_pressed("space"):

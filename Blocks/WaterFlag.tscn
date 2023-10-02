@@ -4,7 +4,7 @@
 
 [node name="Block" instance=ExtResource("1_seo7k")]
 detecting = ["WaterFlow", "WaterSource"]
-next_level = 4
+next_level = 2
 activate_frame = 5
 deactivate_frame = 4
 my_type = "WaterFlag"

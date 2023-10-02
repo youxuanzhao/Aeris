@@ -4,7 +4,7 @@
 
 [node name="Block" instance=ExtResource("1_4bxoa")]
 detecting = ["Tree"]
-next_level = 3
+next_level = 4
 activate_frame = 3
 deactivate_frame = 2
 my_type = "TreeFlag"

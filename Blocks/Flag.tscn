@@ -21,10 +21,9 @@ hframes = 8
 debug_color = Color(0.270588, 0.603922, 0.529412, 0)
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="." index="2"]
-emitting = false
+scale = Vector2(1e-05, 1e-05)
 amount = 30
 lifetime = 0.5
-one_shot = true
 explosiveness = 1.0
 lifetime_randomness = 0.5
 direction = Vector2(0, 0)

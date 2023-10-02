@@ -4,7 +4,7 @@
 
 [node name="Block" instance=ExtResource("1_4bwf0")]
 detecting = ["Fire"]
-next_level = 2
+next_level = 3
 activate_frame = 1
 my_type = "FireFlag"
 

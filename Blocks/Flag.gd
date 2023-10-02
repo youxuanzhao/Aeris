@@ -12,7 +12,7 @@ var flag = false
 
 func _ready():
 	$Sprite2D.frame = deactivate_frame
-	$CPUParticles2D.emitting = false
+	$"CPUParticles2D".emitting = false
 	super._ready()
 
 func type():
@@ -33,13 +33,13 @@ func _after_tick():
 
 	
 	if flag and WindowControl.instance.current_level < next_level:
+		$"CPUParticles2D".emitting = true
 		if next_level > 4:
 			# Game Over
 			pass
 		else:	
 			WindowControl.instance.change_to_level(next_level)
 
-		$CPUParticles2D.emitting = true
 	
 	if flag:
 		$Sprite2D.frame = activate_frame

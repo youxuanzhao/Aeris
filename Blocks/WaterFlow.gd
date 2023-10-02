@@ -2,8 +2,7 @@ extends BasicBlock
 
 class_name WaterFlow
 
-const max_distance = 2
-
+const max_distance = 5
 
 var distance_to_water = 0
 
