@@ -84,3 +84,8 @@ func _input(event):
 	
 	position = TileManager.instance.map_to_local(TileManager.instance.local_to_map(position))
 
+	# Check if position is outof homearea
+	if WindowControl.instance.current_level == 0:
+		if position.x < 88 or position.x > 176 or position.y < 88 or position.y > 176:
+			WindowControl.instance.change_to_level(1)
+
