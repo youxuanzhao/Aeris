@@ -9,4 +9,4 @@ func _tick():
 	super._tick()
 
 func type():
-	return "collision"
+	return "CollisionBlock"

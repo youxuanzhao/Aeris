@@ -30,7 +30,7 @@ func _tick():
 		lifespan -= 1
 
 func type():
-	return "basic"
+	return "Block"
 
 func map_position() -> Vector2i:
 	return TileManager.instance.local_to_map(global_position)

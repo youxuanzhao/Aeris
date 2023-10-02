@@ -1,39 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bllvntpqcyscj"]
+[gd_scene load_steps=4 format=3 uid="uid://bllvntpqcyscj"]
 
-[ext_resource type="PackedScene" uid="uid://byy1fu7cwumoh" path="res://Blocks/CollisionBlock.tscn" id="1_ym65b"]
-[ext_resource type="Script" path="res://Blocks/Fire.gd" id="2_7st30"]
-[ext_resource type="SpriteFrames" uid="uid://fp3p567lnnb4" path="res://Assets/Fire_Frames.tres" id="3_h8mmv"]
+[ext_resource type="PackedScene" uid="uid://byy1fu7cwumoh" path="res://Blocks/CollisionBlock.tscn" id="1_4g7j3"]
+[ext_resource type="Script" path="res://Blocks/Fire.gd" id="2_87eun"]
+[ext_resource type="Texture2D" uid="uid://d2galk6q01nl4" path="res://Assets/Fire.png" id="2_lyp42"]
 
-[sub_resource type="Gradient" id="Gradient_h7txb"]
-offsets = PackedFloat32Array(0.0794702, 0.139073, 0.556291)
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="Gradient" id="Gradient_a0kdh"]
-offsets = PackedFloat32Array(0, 0.483444, 0.993378, 1)
-colors = PackedColorArray(0.26, 0.0845867, 0.0312, 1, 0, 0, 0, 1, 0.229455, 0.122642, 0.0910566, 1, 1, 1, 1, 1)
-
-[node name="Block" instance=ExtResource("1_ym65b")]
-script = ExtResource("2_7st30")
+[node name="Fire" instance=ExtResource("1_4g7j3")]
+script = ExtResource("2_87eun")
 
 [node name="Sprite2D" parent="." index="0"]
-texture = null
-hframes = 5
-frame = 3
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sprite2D" index="1"]
-sprite_frames = ExtResource("3_h8mmv")
-autoplay = "default"
-frame_progress = 0.777925
-
-[node name="CPUParticles2D" type="CPUParticles2D" parent="." index="1"]
-amount = 48
-lifetime = 7.06
-randomness = 0.23
-emission_shape = 2
-emission_sphere_radius = 3.89
-gravity = Vector2(0, -5)
-damping_min = 1.171
-damping_max = 2.391
-color = Color(0.941176, 0.941176, 0.941176, 1)
-color_ramp = SubResource("Gradient_h7txb")
-color_initial_ramp = SubResource("Gradient_a0kdh")
+texture = ExtResource("2_lyp42")

@@ -4,10 +4,39 @@ var sfx: SoundEffects
 
 func _ready():
 	sfx = $SoundEffects as SoundEffects
+
+var states = []
+
+func save_state():
+	states.append({
+		"pos": position,
+		"frame": $Sprite2D.frame,
+		"selected": $Selected.position,
+		"holdingAir": $Selected.holdingAir
+	})
+
+	if states.size() > 10:
+		states.remove_at(0)
+
+func undo():
+	if states.size() == 0:
+		return
+	
+	var last = states.pop_back()
+	position = last["pos"]
+	$Sprite2D.frame = last["frame"]
+	$Selected.position = last["selected"]
+	$Selected.holdingAir = last["holdingAir"]
 	
 func _input(event):
 	if MyPopup.instance.is_open():
 		return
+
+
+	if event.is_action_released("undo"):
+		undo()
+		return
+	
 
 	velocity = Vector2.ZERO
 	
@@ -23,19 +52,26 @@ func _input(event):
 	elif event.is_action_pressed("move_down"):
 		velocity.y = 8
 		
+	if velocity.length() > 0:
+		save_state()
 		
 	if event.is_action_pressed("arrow_right"):
+		save_state()
 		$Selected.position = Vector2(8,0)
 		$Sprite2D.frame = 1
 	elif event.is_action_pressed("arrow_left"):
+		save_state()
 		$Selected.position = Vector2(-8,0)
 		$Sprite2D.frame = 0
 	elif event.is_action_pressed("arrow_up"):
+		save_state()
 		$Selected.position = Vector2(0,-8)
 		$Sprite2D.frame = 2
 	elif event.is_action_pressed("arrow_down"):
+		save_state()
 		$Selected.position = Vector2(0,8)
 		$Sprite2D.frame = 3
+	
 	
 	var coll = move_and_collide(velocity)
 	if coll:
@@ -47,3 +83,4 @@ func _input(event):
 	
 	position.x = round(position.x)
 	position.y = round(position.y)
+
