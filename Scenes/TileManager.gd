@@ -129,7 +129,10 @@ func undo():
 
 	# Re-instantiate blocks
 	for n in state["blocks"]:
-		instantiate_block(n["pos"], n["type"])
+		var b = instantiate_block(n["pos"], n["type"])
+		# TODO: Prevent animation	
+		
+
 
 	# Re-instantiate mask
 	for n in state["mask"]:
