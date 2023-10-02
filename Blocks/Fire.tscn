@@ -22,6 +22,7 @@ hframes = 5
 frame = 3
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sprite2D" index="1"]
+z_index = 9
 sprite_frames = ExtResource("3_h8mmv")
 autoplay = "default"
 frame_progress = 0.776188

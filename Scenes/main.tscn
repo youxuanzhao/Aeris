@@ -234,6 +234,7 @@ script = ExtResource("4_kuehn")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
+z_index = 10
 texture = ExtResource("5_5ryax")
 hframes = 4
 metadata/_edit_group_ = true

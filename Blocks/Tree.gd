@@ -2,6 +2,9 @@ extends CollisionBlock
 
 var activate = false
 
+func define_property():
+	Block = true
+
 func clean_up():
 	for d in directions:
 		var c = TileManager.instance.get_neighbor_cell(map_position(), d)
