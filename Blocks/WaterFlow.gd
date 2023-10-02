@@ -1,29 +1,38 @@
 extends BasicBlock
 
+class_name WaterFlow
+
 const max_distance = 2
 
-func set_direction(d: String):
-    if d == "left":
-        $Sprite2D.region_rect.x = 0
-    else:
-        $Sprite2D.region_rect.x = 8
+
+var distance_to_water = -1
+
+func set_distance_to_water(distance):
+    if distance < distance_to_water or distance_to_water == -1:
+        distance_to_water = distance
+
+func type():
+    return "WaterFlow"
+
+
+func _before_tick():
+    distance_to_water = -1
 
 func _tick():
     if not has_air():
         super._dead()
     
-    # Check distance to nearest WaterSource
-    var min_distance = max_distance + 1
-    for n in TileManager.instance.get_children():
-        if n is WaterSource:
-            var distance = (map_position() - n.map_position()).length()
-            if distance < min_distance:
-                min_distance = distance
-        
-    if min_distance <= max_distance:
-        # Able to expand
-        WaterSource.expand(map_position())
+    if distance_to_water != -1:
+        if distance_to_water == 1:
+            lifespan = 2 # Work around
+        else:
+            lifespan = distance_to_water 
+        if distance_to_water <= max_distance:
+            WaterSource.expand(map_position())
+
+    if len(get_neighborhoods_with_type("Fire")) > 0:
+        change_to("WaterVapor")
+
+    super._tick()
 
 
-
-        

@@ -50,10 +50,21 @@ const movement_actions = [
 
 
 func tick_all():
+	for n in get_children():
+		if n is BasicBlock:
+			n._before_tick()
+
 	# For each tile in symbol layer: trigger _tick	
 	for n in get_children():
 		if n is BasicBlock:
 			n._tick()
+
+	for n in get_children():
+		if n is BasicBlock:
+			if n.is_changing_to:
+				var pos = n.map_position()
+				n.queue_free()
+				instantiate_block(pos, n.is_changing_to)
 
 	# TODO: Serialize all tiles
 
