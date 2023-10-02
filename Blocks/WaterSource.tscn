@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bxipikdkg7obf" path="res://Assets/tiles2-Sheet.png" id="3_rt7vx"]
 
 [node name="Block" instance=ExtResource("1_qlgv3")]
+scale = Vector2(1, 1)
 script = ExtResource("2_w1y15")
 
 [node name="Sprite2D" parent="." index="0"]

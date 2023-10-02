@@ -80,7 +80,7 @@ func _input(event):
 	elif velocity.length() > 0:
 		# Normal movement
 		sfx.play_audio("walk")
+		TileManager.instance.tick_all()
 	
-	position.x = round(position.x)
-	position.y = round(position.y)
+	position = TileManager.instance.map_to_local(TileManager.instance.local_to_map(position))
 

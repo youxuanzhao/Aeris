@@ -6,12 +6,14 @@ func _ready():
 	$AnimationPlayer.play("idle")
 	$whitecover.visible = holdingAir
 
-func on_space():
+func _input(event):
+	if !event.is_action_pressed("space"):
+		return
 	var Coordinate = TileManager.instance.local_to_map(global_position)
 	if TileManager.instance.has_moveable_air(Coordinate) != holdingAir:
-		$"..".save_state()
 		TileManager.instance.set_air(Coordinate, holdingAir)
 		holdingAir = !holdingAir
+		TileManager.instance.tick_all()
 	else:
 		$AnimationPlayer.play("warning")
 		$AnimationPlayer.queue("idle")

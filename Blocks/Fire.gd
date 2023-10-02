@@ -1,6 +1,7 @@
 extends CollisionBlock
 
 func _ready():
+	super._ready()
 	lifespan = -1
 
 func type():
@@ -9,7 +10,4 @@ func type():
 func _tick():
 	super._tick()
 	if !has_air():
-		lifespan = 0
-	
-func _dead():
-	change_to("FireSpark")
+		change_to("FireSpark")

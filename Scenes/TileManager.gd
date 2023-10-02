@@ -8,11 +8,23 @@ const mask_layer = 2
 const BlackMask = Vector3i(2,0,0)
 const FakeAir = Vector3i(0, 0, 1)
 
+var blockDictionary : Dictionary
+
 var m = {
 }
 
 func _ready():
 	instance = self
+	
+func register_block(coordinate : Vector2i,block):
+	if blockDictionary.has(coordinate):
+		blockDictionary[coordinate].append(block)
+		return
+	blockDictionary[coordinate] = [block]
+	
+func deregister_block(coordinate : Vector2i,block):
+	if blockDictionary.has(coordinate):
+		blockDictionary[coordinate].erase(block)
 	
 func has_moveable_air(c: Vector2i) -> bool:
 	return get_cell_tile_data(mask_layer, c) == null
@@ -52,8 +64,8 @@ func get_block(c: Vector2i) -> BasicBlock:
 func instantiate_block(c: Vector2i, type: String):
 	var s = load("res://Blocks/" + type + ".tscn")
 	var block = s.instantiate()
-	add_child(block)
 	block.set_map_position(c)
+	add_child(block)
 	return block
 
 
@@ -66,22 +78,29 @@ const movement_actions = [
 
 var states = []
 
+func get_all_blocks() -> Array:
+	var blocks = []
+	for key in blockDictionary:
+		blocks.append_array(blockDictionary[key])
+	return blocks
+
 func tick_all():
-	for n in get_children():
-		if n is BasicBlock:
-			n._before_tick()
+	print("tick")
+	save_state()
+	
+	for n in get_all_blocks():
+		n._before_tick()
 
 	# For each tile in symbol layer: trigger _tick	
-	for n in get_children():
-		if n is BasicBlock:
-			n._tick()
+	for n in get_all_blocks():
+		n._tick()
 
-	for n in get_children():
-		if n is BasicBlock:
-			if n.is_changing_to:
-				var pos = n.map_position()
-				n.queue_free()
-				instantiate_block(pos, n.is_changing_to)
+	for n in get_all_blocks():
+		if n.is_changing_to:
+			var pos = n.map_position()
+			#n.queue_free()
+			n._dead()
+			instantiate_block(pos, n.is_changing_to)
 
 
 func save_state():
@@ -142,22 +161,6 @@ func undo():
 func _input(event):
 	if MyPopup.instance.is_open():
 		return
-
-	# Check if is move event
-	for n in movement_actions:
-		if event.is_action_pressed(n):
-			print("tick")
-			save_state()
-			tick_all()
-
-	if event.is_action_pressed("space"):
-		save_state()
-	
-		%Selected.on_space()
-		
-		tick_all()
-		return
-
 	
 	# Check if is undo event
 	if event.is_action_pressed("undo"):

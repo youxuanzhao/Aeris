@@ -11,11 +11,12 @@ var Burnable = false
 var Burnt = false
 
 func _ready():
+	TileManager.instance.register_block(map_position(),self)
 	if $AnimationPlayer != null:
 		$AnimationPlayer.play("appear")
 
 func _dead():
-	queue_free()
+	TileManager.instance.deregister_block(map_position(),self)
 	if $AnimationPlayer != null:
 		$AnimationPlayer.play("disappear")
 
@@ -62,36 +63,42 @@ func get_neighborhoods_coords(coord : Vector2i = map_position()) -> Array:
 	return coords
 	
 func coord_has(t:String,coord : Vector2i) -> bool:
-	for n in TileManager.instance.get_children():
-		if n is BasicBlock && n.map_position() == coord && n.type() == t:
+	if !TileManager.instance.blockDictionary.has(coord):
+		return false
+	for block in TileManager.instance.blockDictionary[coord]:
+		if block.type() == t:
 				return true
 	return false
 
 func get_neighborhoods(coord : Vector2i = map_position()):
 	# Get all the neighborhoods of the current block
-	var coords = get_neighborhoods_coords(coord)
-	
 	var neighborhoods = []
-
-	for n in TileManager.instance.get_children():
-		if n is BasicBlock:
-			if n.map_position() in coords:
-				neighborhoods.append(n)
-			
+	
+	for Coord in get_neighborhoods_coords(coord):
+		if !TileManager.instance.blockDictionary.has(Coord):
+			continue
+		neighborhoods.append_array(TileManager.instance.blockDictionary[Coord])
 	return neighborhoods
 
 func get_neighborhoods_with_type(t: String,coord : Vector2i = map_position()) -> Array:
 	# Get all the neighborhoods of type t of the current block
-	var coords = get_neighborhoods_coords(coord)
-	
 	var neighborhoods = []
-
-	for n in TileManager.instance.get_children():
-		if n is BasicBlock:
-			if n.type() == t and n.map_position() in coords:
-				neighborhoods.append(n)	
-
+	
+	for Coord in get_neighborhoods_coords(coord):
+		if !TileManager.instance.blockDictionary.has(Coord):
+			continue
+		for block in TileManager.instance.blockDictionary[Coord]:
+			if block.type() == t:
+				neighborhoods.append(block)	
 	return neighborhoods
 	
 func neighborhoods_has_type(t: String,coord : Vector2i = map_position()) -> bool:
-	return get_neighborhoods_with_type(t,coord).size() > 0
+	for Coord in get_neighborhoods_coords(coord):
+		if coord_has(t,Coord):
+			return true
+	return false
+
+
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == "disappear":
+		queue_free()
