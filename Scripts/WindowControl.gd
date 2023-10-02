@@ -1,5 +1,7 @@
 extends Camera2D
 
+class_name WindowControl
+
 const level_scale = 8 * 11
 
 const level_views_size = [

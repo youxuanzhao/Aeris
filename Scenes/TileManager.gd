@@ -8,23 +8,11 @@ const mask_layer = 2
 const BlackMask = Vector3i(2,0,0)
 const FakeAir = Vector3i(0, 0, 1)
 
-var blockDictionary : Dictionary
-
-var m = {
-}
+# Cache: pos -> block
+var cache = {}
 
 func _ready():
 	instance = self
-	
-func register_block(coordinate : Vector2i,block):
-	if blockDictionary.has(coordinate):
-		blockDictionary[coordinate].append(block)
-		return
-	blockDictionary[coordinate] = [block]
-	
-func deregister_block(coordinate : Vector2i,block):
-	if blockDictionary.has(coordinate):
-		blockDictionary[coordinate].erase(block)
 	
 func has_moveable_air(c: Vector2i) -> bool:
 	return get_cell_tile_data(mask_layer, c) == null
@@ -53,20 +41,29 @@ func set_fake_air(c: Vector2i, air: bool):
 
 	
 func get_block(c: Vector2i) -> BasicBlock:
-	for n in get_children():
-		if n is BasicBlock:
-			if n.map_position() == c:
-				return n
-	
-	return null
+	if not cache.has(c):
+		return null
+
+	return cache[c]
 	
 
-func instantiate_block(c: Vector2i, type: String):
+
+func instantiate_block_now(c: Vector2i, type: String):
 	var s = load("res://Blocks/" + type + ".tscn")
 	var block = s.instantiate()
 	block.set_map_position(c)
 	add_child(block)
 	return block
+
+var new_block_queue = []
+func instantiate_block(c: Vector2i, type: String):
+	if get_block(c):
+		return
+
+	new_block_queue.append({
+		"pos": c,
+		"type": type
+	})
 
 
 const movement_actions = [
@@ -79,14 +76,19 @@ const movement_actions = [
 var states = []
 
 func get_all_blocks() -> Array:
-	var blocks = []
-	for key in blockDictionary:
-		blocks.append_array(blockDictionary[key])
-	return blocks
+	return get_children().filter(func(n): return n is BasicBlock)
+
+func update_cache():
+	cache.clear()
+	for n in get_all_blocks():
+		var pos = n.map_position()
+		cache[pos] = n
+	
 
 func tick_all():
 	print("tick")
 	save_state()
+	update_cache()
 	
 	for n in get_all_blocks():
 		n._before_tick()
@@ -95,12 +97,16 @@ func tick_all():
 	for n in get_all_blocks():
 		n._tick()
 
+	# After tick
 	for n in get_all_blocks():
 		if n.is_changing_to:
 			var pos = n.map_position()
-			#n.queue_free()
-			n._dead()
-			instantiate_block(pos, n.is_changing_to)
+			instantiate_block_now(pos, n.is_changing_to)
+			n.queue_free()
+	
+	for n in new_block_queue:
+		instantiate_block_now(n["pos"], n["type"])
+	new_block_queue.clear()
 
 
 func save_state():
@@ -148,9 +154,8 @@ func undo():
 
 	# Re-instantiate blocks
 	for n in state["blocks"]:
-		var b = instantiate_block(n["pos"], n["type"])
-		# TODO: Prevent animation	
-		
+		var b = instantiate_block_now(n["pos"], n["type"])
+		# TODO: Prevent animation		
 
 
 	# Re-instantiate mask

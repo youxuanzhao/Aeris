@@ -24,8 +24,5 @@ func _tick():
 		if activate:
 			clean_up()
 
-
-
-
 func type():
 	return "Tree"
