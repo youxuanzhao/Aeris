@@ -33,6 +33,9 @@ func undo():
 func _input(event):
 	if MyPopup.instance.is_open():
 		return
+	
+	if GameOver.instance.is_open():
+		return
 
 
 	if event.is_action_released("undo"):
@@ -71,15 +74,16 @@ func _input(event):
 		$Sprite2D.frame = 3
 	
 	
-	var coll = move_and_collide(velocity)
-	if coll:
-		# Collision happens
-		sfx.play_audio("collide")
-	elif velocity.length() > 0:
-		# Normal movement
-		sfx.play_audio("walk")
-		TileManager.instance.save_state()
-		TileManager.instance.tick_all()
+	if velocity.length() > 0:
+		var coll = move_and_collide(velocity)
+		if coll:
+			# Collision happens
+			sfx.play_audio("collide")
+		else:
+			# Normal movement
+			sfx.play_audio("walk")
+			TileManager.instance.save_state()
+			TileManager.instance.tick_all()
 	
 	position = TileManager.instance.map_to_local(TileManager.instance.local_to_map(position))
 

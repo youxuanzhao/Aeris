@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c5ogsmf14qvwq"]
+[gd_scene load_steps=18 format=3 uid="uid://c5ogsmf14qvwq"]
 
 [ext_resource type="Script" path="res://Scripts/menu.gd" id="1_6lmug"]
 [ext_resource type="Texture2D" uid="uid://ustqb8v6phnw" path="res://Assets/popup.png" id="1_rof16"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/Quit.gd" id="3_qpe6n"]
 [ext_resource type="Script" path="res://Scripts/MenuButton.gd" id="4_iwcsk"]
 [ext_resource type="Texture2D" uid="uid://3naimwsydmt1" path="res://Assets/menubutton-Sheet.png" id="5_i8s2d"]
+[ext_resource type="Script" path="res://Scripts/Reset.gd" id="5_iilht"]
 
 [sub_resource type="Animation" id="Animation_6gfew"]
 resource_name = "fade_in"
@@ -120,6 +121,7 @@ grow_vertical = 2
 theme = ExtResource("2_sxeo2")
 theme_override_font_sizes/font_size = 7
 text = "Reset"
+script = ExtResource("5_iilht")
 
 [node name="Quit" type="Button" parent="CanvasLayer/Panel"]
 layout_mode = 1

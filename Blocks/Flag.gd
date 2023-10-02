@@ -36,7 +36,7 @@ func _after_tick():
 		$"CPUParticles2D".emitting = true
 		if next_level > 4:
 			# Game Over
-			pass
+			GameOver.instance.win()
 		else:	
 			WindowControl.instance.change_to_level(next_level)
 

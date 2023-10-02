@@ -131,7 +131,7 @@ func tick_all():
 
 	if get_block(c) and get_block(c).type() in ["Tree", "Fire"]:
 		print("Game over")
-		get_tree().quit()
+		GameOver.instance.died()
 	
 
 func save_state():
