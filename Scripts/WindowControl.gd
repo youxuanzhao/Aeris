@@ -30,16 +30,16 @@ var current_level = 0
 
 func _ready():
 	instance = self
-	window_scale = DisplayServer.screen_get_size().y / 4.0
+	window_scale = DisplayServer.screen_get_size().y / 3.3
 	print(scale)
 	change_to_level(current_level)
 
 func change_to_level(l: int):
 	get_viewport().set_content_scale_size(level_views_size[l] * level_scale)
 	position = level_views_offset[l] * (level_scale)
+	get_window().size = level_views_size[l] * window_scale
 	get_window().max_size = level_views_size[l] * window_scale
 	get_window().min_size = level_views_size[l] * window_scale
-	get_window().size = level_views_size[l] * window_scale
 	current_level = l
 
 
