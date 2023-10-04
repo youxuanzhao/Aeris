@@ -114,11 +114,17 @@ func tick_all():
 	for n in get_all_blocks():
 		if n.is_changing_to:
 			var pos = n.map_position()
-			instantiate_block_now(pos, n.is_changing_to)
+			instantiate_block(pos, n.is_changing_to)
 			n._dead()
 			n.queue_free()
 	
+	# Check Tree / Fire grow on player
+	var c = local_to_map(Player.instance.global_position)
 	for n in new_block_queue:
+		if n["pos"] == c and n["type"] in ["Fire", "Tree"]:
+			print("Game over")
+			GameOver.instance.died()
+			return
 		instantiate_block_now(n["pos"], n["type"])
 	new_block_queue.clear()
 
@@ -127,12 +133,6 @@ func tick_all():
 	for n in get_all_blocks():
 		n._after_tick()
 	
-	# Check Tree / Fire grow on player
-	var c = local_to_map(Player.instance.global_position)
-
-	if get_block(c) and get_block(c).type() in ["Tree", "Fire"]:
-		print("Game over")
-		GameOver.instance.died()
 	
 
 func save_state():
